@@ -88,6 +88,11 @@ public class LoginForm extends javax.swing.JFrame {
         });
 
         jButton2.setText("Clear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,30 +149,21 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        try {
-            String username = userField.getText();
-            String password = passField.getText();
-            String comboList = listUser.getSelectedItem().toString();
 
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_tugasakhir", "root", "");
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select * from login_user where user='" + username + "' "
-                    + "and pass='" + password + "' and hakakses ='" + comboList + "'");
-            rs.last();
-            if(userField.getText() == ""){
-                JOptionPane.showMessageDialog(this, "Harus DIisi");
-            if (username.equals("user") && password.equals("pass") && comboList.equals("level")) {
-                dash.setVisible(true);
-                btn1.setEnabled(true);
-                btn3.setEnabled(true);
-                btn2.setEnabled(false);
-                userField.setText("");
-                passField.setText("");
-                listUser.setSelectedItem("Admin");
-                this.dispose();
+        String username = userField.getText();
+        String password = passField.getText();
+        String comboList = listUser.getSelectedItem().toString();
 
-            } else if (rs.getRow() >= 1) {
-                if (listUser.getSelectedItem().equals("Admin")) {
+        if (username.equals("") || password.equals("") || comboList.equals("---Pilih User---")) {
+            JOptionPane.showMessageDialog(this, "Harus DIisi");
+        } else {
+            try {
+                Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_tugasakhir", "root", "");
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery("select * from login_user where user='" + username + "' "
+                        + "and pass='" + password + "' and hakakses ='" + comboList + "'");
+                rs.last();
+                if (username.equals("user") && password.equals("pass") && comboList.equals("hakakses")) {
                     dash.setVisible(true);
                     btn1.setEnabled(true);
                     btn3.setEnabled(true);
@@ -176,37 +172,60 @@ public class LoginForm extends javax.swing.JFrame {
                     passField.setText("");
                     listUser.setSelectedItem("Admin");
                     this.dispose();
-              } else if(listUser.getSelectedItem().equals("Mahasiswa")){
-                   dash.setVisible(true);
-                    btn1.setEnabled(true);
-                    btn3.setEnabled(false);
-                    btn2.setEnabled(false);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Username dan Password tidak Terdaftar", "Login Error", JOptionPane.ERROR_MESSAGE);
                     userField.setText("");
                     passField.setText("");
-                    listUser.setSelectedItem("Mahasiswa");
-                    this.dispose();
-              } else if(listUser.getSelectedItem().equals("Dosen")){
-                  dash.setVisible(true);
-                    btn1.setEnabled(true);
-                    btn3.setEnabled(true);
-                    btn2.setEnabled(false);
-                    userField.setText("");
-                    passField.setText("");
-                    listUser.setSelectedItem("Dosen");
-                    this.dispose();
-              }else if((rs.getRow()==0)){
-                    JOptionPane.showMessageDialog(null, "Login Gagal");
-                    btn1.setEnabled(false);
-                    btn3.setEnabled(false);
-                    btn2.setEnabled(false);
-                } 
-                st.close();
+                    listUser.setSelectedItem("---Pilih User---");
+                }
+                if (rs.getRow() >= 1) {
+                    if (listUser.getSelectedItem().equals("Admin")) {
+                        dash.setVisible(true);
+                        btn1.setEnabled(true);
+                        btn3.setEnabled(true);
+                        btn2.setEnabled(false);
+                        userField.setText("");
+                        passField.setText("");
+                        listUser.setSelectedItem("Admin");
+                        this.dispose();
+                    } else if (listUser.getSelectedItem().equals("Mahasiswa")) {
+                        dash.setVisible(true);
+                        btn1.setEnabled(true);
+                        btn3.setEnabled(false);
+                        btn2.setEnabled(false);
+                        userField.setText("");
+                        passField.setText("");
+                        listUser.setSelectedItem("Mahasiswa");
+                        this.dispose();
+                    } else if (listUser.getSelectedItem().equals("Dosen")) {
+                        dash.setVisible(true);
+                        btn1.setEnabled(true);
+                        btn3.setEnabled(true);
+                        btn2.setEnabled(false);
+                        userField.setText("");
+                        passField.setText("");
+                        listUser.setSelectedItem("Dosen");
+                        this.dispose();
+                    } else if ((rs.getRow() == 0)) {
+                        JOptionPane.showMessageDialog(null, "Login Gagal");
+                        btn1.setEnabled(false);
+                        btn3.setEnabled(false);
+                        btn2.setEnabled(false);
+                    }
+                    st.close();
+                }
+            } catch (Exception e) {
+                System.out.println(e);
             }
-            }
-        } catch (SQLException e) {
-            System.out.println("Error" + e.getMessage());
         }
     }//GEN-LAST:event_loginBtnActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        userField.setText("");
+        passField.setText("");
+        listUser.setSelectedItem("---Pilih User---");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
