@@ -22,7 +22,7 @@ public class Connection {
             
             DriverManager.registerDriver((new com.mysql.jdbc.Driver()));
             conn = (Connection) DriverManager.getConnection(url, user, pass);
-            System.out.println("KOneksi Berhasil");
+            System.out.println("Koneksi Berhasil");
         } catch (SQLException e) {
             System.out.println("Koneksi Gagal" + e.getMessage());
         }
