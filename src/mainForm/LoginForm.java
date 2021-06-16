@@ -11,9 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import static mainForm.DashboardForm.btn1;
-import static mainForm.DashboardForm.btn2;
-import static mainForm.DashboardForm.btn3;
+import static mainForm.DashboardForm.*;
 
 /**
  *
@@ -165,53 +163,57 @@ public class LoginForm extends javax.swing.JFrame {
                 rs.last();
                 if (username.equals("user") && password.equals("pass") && comboList.equals("hakakses")) {
                     dash.setVisible(true);
-                    btn1.setEnabled(true);
-                    btn3.setEnabled(true);
-                    btn2.setEnabled(false);
+                    daftar.setEnabled(true);
+                    ujian.setEnabled(true);
+                    proporsal.setEnabled(false);
                     userField.setText("");
                     passField.setText("");
                     listUser.setSelectedItem("Admin");
                     this.dispose();
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Username dan Password tidak Terdaftar", "Login Error", JOptionPane.ERROR_MESSAGE);
-                    userField.setText("");
-                    passField.setText("");
-                    listUser.setSelectedItem("---Pilih User---");
-                }
+                } 
                 if (rs.getRow() >= 1) {
                     if (listUser.getSelectedItem().equals("Admin")) {
                         dash.setVisible(true);
-                        btn1.setEnabled(true);
-                        btn3.setEnabled(true);
-                        btn2.setEnabled(false);
+                        daftar.setEnabled(false);
+                        proporsal.setEnabled(false);
+                        approve.setEnabled(true);
+                        penjadwalan1.setEnabled(true);
+                        nilai.setEnabled(true);
+                        ujian.setEnabled(false);
                         userField.setText("");
                         passField.setText("");
                         listUser.setSelectedItem("Admin");
                         this.dispose();
                     } else if (listUser.getSelectedItem().equals("Mahasiswa")) {
                         dash.setVisible(true);
-                        btn1.setEnabled(true);
-                        btn3.setEnabled(false);
-                        btn2.setEnabled(false);
+                        daftar.setEnabled(true);
+                        proporsal.setEnabled(true);
+                        approve.setEnabled(false);
+                        penjadwalan1.setEnabled(false);
+                        nilai.setEnabled(false);
+                        ujian.setEnabled(false);
                         userField.setText("");
                         passField.setText("");
-                        listUser.setSelectedItem("Mahasiswa");
-                        this.dispose();
+                        listUser.setSelectedItem("Admin");
+                        this.dispose();;
                     } else if (listUser.getSelectedItem().equals("Dosen")) {
-                        dash.setVisible(true);
-                        btn1.setEnabled(true);
-                        btn3.setEnabled(true);
-                        btn2.setEnabled(false);
+                       dash.setVisible(true);
+                        daftar.setEnabled(false);
+                        proporsal.setEnabled(false);
+                        approve.setEnabled(false);
+                        penjadwalan1.setEnabled(false);
+                        nilai.setEnabled(false);
+                        ujian.setEnabled(true);
                         userField.setText("");
                         passField.setText("");
-                        listUser.setSelectedItem("Dosen");
-                        this.dispose();
+                        listUser.setSelectedItem("Admin");
+                        this.dispose();;
                     } else if ((rs.getRow() == 0)) {
                         JOptionPane.showMessageDialog(null, "Login Gagal");
-                        btn1.setEnabled(false);
-                        btn3.setEnabled(false);
-                        btn2.setEnabled(false);
+                        daftar.setEnabled(false);
+                        ujian.setEnabled(false);
+                        proporsal.setEnabled(false);
                     }
                     st.close();
                 }
