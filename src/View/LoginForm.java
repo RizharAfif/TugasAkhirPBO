@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mainForm;
+package View;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import static mainForm.DashboardForm.*;
+import static View.DashboardForm.*;
 
 /**
  *
@@ -170,7 +170,6 @@ public class LoginForm extends javax.swing.JFrame {
                     passField.setText("");
                     listUser.setSelectedItem("Admin");
                     this.dispose();
-
                 } 
                 if (rs.getRow() >= 1) {
                     if (listUser.getSelectedItem().equals("Admin")) {

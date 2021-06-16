@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mainForm;
+package View;
 
 /**
  *
@@ -79,6 +79,11 @@ public class DashboardForm extends javax.swing.JFrame {
         penjadwalan1.setText("Penjadwalan Ujian");
 
         nilai.setText("Nilai PKN");
+        nilai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nilaiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,6 +135,12 @@ public class DashboardForm extends javax.swing.JFrame {
         form.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void nilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiActionPerformed
+       NilaiPerusahaan nilai = new NilaiPerusahaan();
+       nilai.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_nilaiActionPerformed
 
     /**
      * @param args the command line arguments
