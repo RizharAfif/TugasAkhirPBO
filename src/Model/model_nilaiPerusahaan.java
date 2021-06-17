@@ -24,6 +24,7 @@ public class model_nilaiPerusahaan implements controller_nilaiPerusahaan{
         try {
             Connection con = (Connection) koneksi.configDB();
             String sql = "insert nilai_pkn values(?,?,?,?,?,?,?,?,?,?)";
+            
         } catch (Exception e) {
         }
     }
