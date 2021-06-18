@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author LEGION
  */
-public class DaoNilai extends model_nilaiPerusahaan {
+public class DaoNilai implements DaoImplement {
 
     Connection connection;
     final String tambah = "INSERT INTO nilai_pkn(sopan,disHadir,disPeker,kePrak,tngjwb,mau,ilPrak,trampil,bicara,gaul)"
@@ -23,24 +23,25 @@ public class DaoNilai extends model_nilaiPerusahaan {
     final String delete = "DELETE FROM nilai_pkn WHERE id=?";
     final String select = "SELECT * FROM nilai_pkn";
 
-    public DaoNilai() throws SQLException {
+    public DaoNilai() throws SQLException{
         connection = (Connection) koneksi.configDB();
     }
 
-    public void tambah(model_nilaiPerusahaan nilai) {
-        PreparedStatement ps = null;
+    @Override
+    public void Tambah(model_nilaiPerusahaan m){
+         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(tambah);
-            ps.setInt(1, nilai.getTsopan());
-            ps.setInt(2, nilai.getTdisHadir());
-            ps.setInt(3, nilai.getTdisPeker());
-            ps.setInt(4, nilai.getTkePrak());
-            ps.setInt(5, nilai.getTtngjwb());
-            ps.setInt(6, nilai.getTmau());
-            ps.setInt(7, nilai.getTilPrak());
-            ps.setInt(8, nilai.getTtrampil());
-            ps.setInt(9, nilai.getTbicara());
-            ps.setInt(10, nilai.getTgaul());
+            ps.setInt(1, m.getTsopan());
+            ps.setInt(2, m.getTdisHadir());
+            ps.setInt(3, m.getTdisPeker());
+            ps.setInt(4, m.getTkePrak());
+            ps.setInt(5, m.getTtngjwb());
+            ps.setInt(6, m.getTmau());
+            ps.setInt(7, m.getTilPrak());
+            ps.setInt(8, m.getTtrampil());
+            ps.setInt(9, m.getTbicara());
+            ps.setInt(10, m.getTgaul());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,12 +53,13 @@ public class DaoNilai extends model_nilaiPerusahaan {
             }
         }
     } // end method
-    
-    public void delete(int id){
-        PreparedStatement ps = null;
+
+    @Override
+    public void Hapus() {
+         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(delete);
-            ps.setInt(1, id);
+//            ps.setInt(1, id);
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -69,9 +71,10 @@ public class DaoNilai extends model_nilaiPerusahaan {
             }
             
         } 
-    } // ebd method
-    
-    public List<model_nilaiPerusahaan> get(){
+    } //end method
+
+    @Override
+    public List<model_nilaiPerusahaan> getAll() {
         List<model_nilaiPerusahaan> list = null;
         try {
             list = new ArrayList<model_nilaiPerusahaan>();
@@ -79,7 +82,18 @@ public class DaoNilai extends model_nilaiPerusahaan {
             ResultSet rs = st.executeQuery(select);
             while (rs.next()) {                
                 model_nilaiPerusahaan m = new model_nilaiPerusahaan();
-                
+                m.setTid(rs.getInt("id"));
+                m.setTsopan(rs.getInt("sopan"));
+                m.setTdisHadir(rs.getInt("disHadir"));
+                m.setTdisPeker(rs.getInt("disPeker"));
+                m.setTkePrak(rs.getInt("kePrak"));
+                m.setTtngjwb(rs.getInt("tngjwb"));
+                m.setTmau(rs.getInt("mau"));
+                m.setTilPrak(rs.getInt("ilPrak"));
+                m.setTtrampil(rs.getInt("trampil"));
+                m.setTbicara(rs.getInt("bicara"));
+                m.setTgaul(rs.getInt("gaul"));
+                list.add(m);
             }
         } catch (Exception e) {
             e.printStackTrace();

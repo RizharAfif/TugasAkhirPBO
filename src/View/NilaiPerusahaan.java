@@ -5,17 +5,23 @@
  */
 package View;
 
+import Controller.controller_nilaiPerusahaan;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author LEGION
  */
 public class NilaiPerusahaan extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NilaiPerusahaan
-     */
-    public NilaiPerusahaan() {
+     controller_nilaiPerusahaan control;
+     
+    public NilaiPerusahaan() throws SQLException{
         initComponents();
+        control = new controller_nilaiPerusahaan(this);
+        control.isiTabel();
     }
 
     /**
@@ -52,8 +58,18 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
         print.setText("Print");
 
         nextBtn.setText("Tambah");
+        nextBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setText("Hapus");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         kembali.setText("Kembali");
 
@@ -100,6 +116,21 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
+        try {
+            TambahNilaiForm tbh = new TambahNilaiForm();
+            tbh.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(NilaiPerusahaan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_nextBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        control.delete();
+        control.isiTabel();
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -130,7 +161,11 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NilaiPerusahaan().setVisible(true);
+                try {
+                    new NilaiPerusahaan().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(NilaiPerusahaan.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -143,4 +178,28 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
     private javax.swing.JButton print;
     private javax.swing.JTable tableView;
     // End of variables declaration//GEN-END:variables
+public javax.swing.JButton getDeleteBtn() {
+        return deleteBtn;
+    }
+
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public javax.swing.JButton getKembali() {
+        return kembali;
+    }
+
+    public javax.swing.JButton getNextBtn() {
+        return nextBtn;
+    }
+
+    public javax.swing.JButton getPrint() {
+        return print;
+    }
+
+    public javax.swing.JTable getTableView() {
+        return tableView;
+    }
+
 }

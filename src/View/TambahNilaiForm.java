@@ -5,17 +5,23 @@
  */
 package View;
 
+import Controller.controller_nilaiPerusahaan;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author LEGION
  */
 public class TambahNilaiForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TambahNilaiForm
-     */
-    public TambahNilaiForm() {
+    controller_nilaiPerusahaan control;
+    
+    public TambahNilaiForm() throws SQLException {
         initComponents();
+        control = new controller_nilaiPerusahaan(this);
+        control.isiTabel();
     }
 
     /**
@@ -108,8 +114,18 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         });
 
         tbhBtn.setText("Tambah");
+        tbhBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbhBtnActionPerformed(evt);
+            }
+        });
 
         back.setText("Kembali");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -213,6 +229,23 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_disHadirActionPerformed
 
+    private void tbhBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbhBtnActionPerformed
+        control.insert();
+        control.isiTabel();
+        control.reset();
+    }//GEN-LAST:event_tbhBtnActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+       NilaiPerusahaan nilai;
+        try {
+            nilai = new NilaiPerusahaan();
+            nilai.setVisible(true);
+       this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(TambahNilaiForm.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }//GEN-LAST:event_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,7 +276,11 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TambahNilaiForm().setVisible(true);
+                try {
+                    new TambahNilaiForm().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(TambahNilaiForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -276,4 +313,96 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     public javax.swing.JTextField tngjwb;
     public javax.swing.JTextField trampil;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the back
+     */
+    public javax.swing.JButton getBack() {
+        return back;
+    }
+
+    /**
+     * @return the bicara
+     */
+    public javax.swing.JTextField getBicara() {
+        return bicara;
+    }
+
+    /**
+     * @return the disHadir
+     */
+    public javax.swing.JTextField getDisHadir() {
+        return disHadir;
+    }
+
+    /**
+     * @return the disPeker
+     */
+    public javax.swing.JTextField getDisPeker() {
+        return disPeker;
+    }
+
+    /**
+     * @return the gaul
+     */
+    public javax.swing.JTextField getGaul() {
+        return gaul;
+    }
+
+    /**
+     * @return the ilPrak
+     */
+    public javax.swing.JTextField getIlPrak() {
+        return ilPrak;
+    }
+
+    /**
+     * @return the kePrak
+     */
+    public javax.swing.JTextField getKePrak() {
+        return kePrak;
+    }
+
+    /**
+     * @return the listNama
+     */
+    public javax.swing.JComboBox<String> getListNama() {
+        return listNama;
+    }
+
+    /**
+     * @return the mau
+     */
+    public javax.swing.JTextField getMau() {
+        return mau;
+    }
+
+    /**
+     * @return the sopan
+     */
+    public javax.swing.JTextField getSopan() {
+        return sopan;
+    }
+
+    /**
+     * @return the tbhBtn
+     */
+    public javax.swing.JButton getTbhBtn() {
+        return tbhBtn;
+    }
+
+    /**
+     * @return the tngjwb
+     */
+    public javax.swing.JTextField getTngjwb() {
+        return tngjwb;
+    }
+
+    /**
+     * @return the trampil
+     */
+    public javax.swing.JTextField getTrampil() {
+        return trampil;
+    }
+
 }
