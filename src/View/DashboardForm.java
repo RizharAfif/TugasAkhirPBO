@@ -5,6 +5,10 @@
  */
 package View;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author LEGION
@@ -133,13 +137,11 @@ public class DashboardForm extends javax.swing.JFrame {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         LoginForm form = new LoginForm();
         form.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void nilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiActionPerformed
-       NilaiPerusahaan nilai = new NilaiPerusahaan();
-       nilai.setVisible(true);
-       this.dispose();
+        NilaiPerusahaan perusahaan = new NilaiPerusahaan();
+        perusahaan.setVisible(true);
     }//GEN-LAST:event_nilaiActionPerformed
 
     /**

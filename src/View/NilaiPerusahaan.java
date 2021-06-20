@@ -5,10 +5,15 @@
  */
 package View;
 
-import Controller.controller_nilaiPerusahaan;
+import connectionConfig.Koneksi;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,12 +21,15 @@ import java.util.logging.Logger;
  */
 public class NilaiPerusahaan extends javax.swing.JFrame {
 
-     controller_nilaiPerusahaan control;
-     
-    public NilaiPerusahaan() throws SQLException{
+    DefaultTableModel model = new DefaultTableModel();
+    Koneksi kon = new Koneksi();
+    Connection a = kon.configDB();
+
+    public NilaiPerusahaan() {
         initComponents();
-        control = new controller_nilaiPerusahaan(this);
-        control.isiTabel();
+       
+        code.setVisible(true);
+        loadTable();
     }
 
     /**
@@ -39,20 +47,26 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
         nextBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         kembali = new javax.swing.JButton();
+        code = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tableView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Sopan", "Disiplin Hadir", "Disiplin Kerja", "Kerja Praktek", "Tanggung Jawab", "Kemauan Kerja", "Ilmu Kerja", "Ketrampilan", "Bicara", "Bergaul"
             }
         ));
+        tableView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableViewMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableView);
 
         print.setText("Print");
@@ -73,6 +87,8 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
 
         kembali.setText("Kembali");
 
+        code.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,32 +97,38 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1233, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(deleteBtn)
-                                .addGap(18, 18, 18)
-                                .addComponent(nextBtn)
-                                .addGap(155, 155, 155))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(kembali)
-                                .addGap(103, 103, 103)
+                                .addGap(18, 18, 18)
                                 .addComponent(print)
-                                .addGap(207, 207, 207))))))
+                                .addGap(292, 292, 292))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(deleteBtn)
+                                .addGap(27, 27, 27)
+                                .addComponent(nextBtn)
+                                .addGap(296, 296, 296))))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(code)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(108, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nextBtn)
                     .addComponent(deleteBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(code)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(print)
                     .addComponent(kembali))
@@ -118,18 +140,35 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         try {
-            TambahNilaiForm tbh = new TambahNilaiForm();
-            tbh.setVisible(true);
+            TambahNilaiForm nilai = new TambahNilaiForm();
+            nilai.setVisible(true);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(NilaiPerusahaan.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }//GEN-LAST:event_nextBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        control.delete();
-        control.isiTabel();
+        if (tableView.getSelectedRow() > 0) {
+            JOptionPane.showMessageDialog(this, "Data Successfullly Deleted");
+            try {
+                String sql = "DELETE FROM nilai_pkn where id = '" + code.getText() + "'";
+                Statement st = a.createStatement();
+                st.executeUpdate(sql);
+                st.close();
+                JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Data gagal" + e);
+            }
+        }
     }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void tableViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableViewMouseClicked
+        int i = tableView.getSelectedRow();
+        String a = tableView.getValueAt(i, 0).toString();
+
+        code.setText(a);
+    }//GEN-LAST:event_tableViewMouseClicked
 
     /**
      * @param args the command line arguments
@@ -161,45 +200,46 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new NilaiPerusahaan().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(NilaiPerusahaan.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new NilaiPerusahaan().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel code;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton kembali;
     private javax.swing.JButton nextBtn;
     private javax.swing.JButton print;
-    private javax.swing.JTable tableView;
+    public javax.swing.JTable tableView;
     // End of variables declaration//GEN-END:variables
-public javax.swing.JButton getDeleteBtn() {
-        return deleteBtn;
-    }
+public void loadTable() {
+        model.getDataVector().clear();
+        model.fireTableDataChanged();
+        tableView.setModel(model);
+        model.addColumn("Id");
+        model.addColumn("Sopan");
+        model.addColumn("Disiplin Hadir");
+        model.addColumn("Disiplin Kerja");
+        model.addColumn("Kerja Praktek");
+        model.addColumn("Tanggung Jawab");
+        model.addColumn("Kemauan Kerja");
+        model.addColumn("Ilmu Kerja");
+        model.addColumn("Ketrampilan");
+        model.addColumn("Bicara");
+        model.addColumn("Bergaul");
+        try {
+            int id =1;
+            String sql = "select * from nilai_pkn";
+            Statement n = a.createStatement();
+            ResultSet rs = n.executeQuery(sql);
+            while (rs.next()) {
+                  model.addRow(new Object[]{id++,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),
+                  rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10)});
+            }
+        } catch (SQLException e) {
 
-    public javax.swing.JScrollPane getjScrollPane1() {
-        return jScrollPane1;
+        }
     }
-
-    public javax.swing.JButton getKembali() {
-        return kembali;
-    }
-
-    public javax.swing.JButton getNextBtn() {
-        return nextBtn;
-    }
-
-    public javax.swing.JButton getPrint() {
-        return print;
-    }
-
-    public javax.swing.JTable getTableView() {
-        return tableView;
-    }
-
 }

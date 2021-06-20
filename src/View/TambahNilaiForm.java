@@ -5,10 +5,13 @@
  */
 package View;
 
-import Controller.controller_nilaiPerusahaan;
+import connectionConfig.Koneksi;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,12 +19,12 @@ import java.util.logging.Logger;
  */
 public class TambahNilaiForm extends javax.swing.JFrame {
 
-    controller_nilaiPerusahaan control;
-    
+    Koneksi kon = new Koneksi();
+    Connection a = kon.configDB();
+
     public TambahNilaiForm() throws SQLException {
         initComponents();
-        control = new controller_nilaiPerusahaan(this);
-        control.isiTabel();
+
     }
 
     /**
@@ -230,20 +233,33 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_disHadirActionPerformed
 
     private void tbhBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbhBtnActionPerformed
-        control.insert();
-        control.isiTabel();
-        control.reset();
+        try {
+            int Tsopan = Integer.parseInt(sopan.getText());
+            int Tdishadir = Integer.parseInt(disHadir.getText());
+            int Tdispeker = Integer.parseInt(disPeker.getText());
+            int TkePrak = Integer.parseInt(kePrak.getText());
+            int Tjawab = Integer.parseInt(tngjwb.getText());
+            int Tmau = Integer.parseInt(mau.getText());
+            int TilPrak = Integer.parseInt(ilPrak.getText());
+            int Ttrampil = Integer.parseInt(trampil.getText());
+            int Tbicara = Integer.parseInt(bicara.getText());
+            int Tgaul = Integer.parseInt(gaul.getText());
+            String sql = "insert into nilai_pkn (sopan, disHadir, disPeker, kePrak, tngjwb, mau, ilPrak, trampil, bicara, gaul)"
+                    + "VALUES ('" + Tsopan + "', '" + Tdishadir + "', '" + Tdispeker + "', '" + TkePrak + "', '" + Tjawab + "',"
+                    + "'" + Tmau + "','" + TilPrak + "', '" + Ttrampil + "', '" + Tbicara + "', '" + Tgaul + "')";
+            PreparedStatement ps = a.prepareStatement(sql);
+            ps.execute();
+            JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+             ps.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Data gagal" + e);
+        }
     }//GEN-LAST:event_tbhBtnActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-       NilaiPerusahaan nilai;
-        try {
-            nilai = new NilaiPerusahaan();
-            nilai.setVisible(true);
-       this.dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(TambahNilaiForm.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+        NilaiPerusahaan nilai = new NilaiPerusahaan();
+        nilai.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backActionPerformed
 
     /**
@@ -313,96 +329,4 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     public javax.swing.JTextField tngjwb;
     public javax.swing.JTextField trampil;
     // End of variables declaration//GEN-END:variables
-
-    /**
-     * @return the back
-     */
-    public javax.swing.JButton getBack() {
-        return back;
-    }
-
-    /**
-     * @return the bicara
-     */
-    public javax.swing.JTextField getBicara() {
-        return bicara;
-    }
-
-    /**
-     * @return the disHadir
-     */
-    public javax.swing.JTextField getDisHadir() {
-        return disHadir;
-    }
-
-    /**
-     * @return the disPeker
-     */
-    public javax.swing.JTextField getDisPeker() {
-        return disPeker;
-    }
-
-    /**
-     * @return the gaul
-     */
-    public javax.swing.JTextField getGaul() {
-        return gaul;
-    }
-
-    /**
-     * @return the ilPrak
-     */
-    public javax.swing.JTextField getIlPrak() {
-        return ilPrak;
-    }
-
-    /**
-     * @return the kePrak
-     */
-    public javax.swing.JTextField getKePrak() {
-        return kePrak;
-    }
-
-    /**
-     * @return the listNama
-     */
-    public javax.swing.JComboBox<String> getListNama() {
-        return listNama;
-    }
-
-    /**
-     * @return the mau
-     */
-    public javax.swing.JTextField getMau() {
-        return mau;
-    }
-
-    /**
-     * @return the sopan
-     */
-    public javax.swing.JTextField getSopan() {
-        return sopan;
-    }
-
-    /**
-     * @return the tbhBtn
-     */
-    public javax.swing.JButton getTbhBtn() {
-        return tbhBtn;
-    }
-
-    /**
-     * @return the tngjwb
-     */
-    public javax.swing.JTextField getTngjwb() {
-        return tngjwb;
-    }
-
-    /**
-     * @return the trampil
-     */
-    public javax.swing.JTextField getTrampil() {
-        return trampil;
-    }
-
 }
