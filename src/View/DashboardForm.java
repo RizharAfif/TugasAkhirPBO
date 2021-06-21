@@ -5,9 +5,11 @@
  */
 package View;
 
+import viewAdmin.TambahNilaiForm;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import viewAdmin.PersetujuanData;
 
 /**
  *
@@ -77,8 +79,18 @@ public class DashboardForm extends javax.swing.JFrame {
         ujian.setText("Jadwal Ujian");
 
         proporsal.setText("Pengajuan Proporsal");
+        proporsal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                proporsalActionPerformed(evt);
+            }
+        });
 
         approve.setText("Persetujuan");
+        approve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                approveActionPerformed(evt);
+            }
+        });
 
         penjadwalan1.setText("Penjadwalan Ujian");
 
@@ -143,6 +155,18 @@ public class DashboardForm extends javax.swing.JFrame {
         TambahNilaiForm form = new TambahNilaiForm();
         form.setVisible(true);
     }//GEN-LAST:event_nilaiActionPerformed
+
+    private void proporsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proporsalActionPerformed
+       pengajuanProporsal prop = new pengajuanProporsal();
+       prop.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_proporsalActionPerformed
+
+    private void approveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveActionPerformed
+       PersetujuanData s = new PersetujuanData();
+       s.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_approveActionPerformed
 
     /**
      * @param args the command line arguments

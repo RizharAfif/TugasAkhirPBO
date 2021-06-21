@@ -3,28 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package viewAdmin;
 
 import connectionConfig.Koneksi;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author LEGION
  */
 public class TambahNilaiForm extends javax.swing.JFrame {
-
+    DefaultTableModel tabel = new DefaultTableModel();
     Koneksi kon = new Koneksi();
     Connection a = kon.configDB();
 
     public TambahNilaiForm(){
         initComponents();
-
+        tableView.setModel(tabel);
+        tabel.addColumn("id");
+        tabel.addColumn("Sopan");
+        tabel.addColumn("Disiplin Hadir");
+        tabel.addColumn("Disiplin Pekerjaan");
+        tabel.addColumn("Kerja Praktek");
+        tabel.addColumn("Tanggung Jawab");
+        tabel.addColumn("Kemauan Bekerja");
+        tabel.addColumn("Ilmu Praktek");
+        tabel.addColumn("Ketrampilan");
+        tabel.addColumn("Berbicara");
+        tabel.addColumn("Bergaul");
+        label.setVisible(false);
+        loadTable();
     }
 
     /**
@@ -65,6 +81,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableView = new javax.swing.JTable();
         hapusBtn = new javax.swing.JButton();
+        label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,6 +169,13 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableView);
 
         hapusBtn.setText("Hapus");
+        hapusBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusBtnActionPerformed(evt);
+            }
+        });
+
+        label.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -198,7 +222,9 @@ public class TambahNilaiForm extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(62, 62, 62)
+                .addComponent(label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(back)
                 .addGap(18, 18, 18)
                 .addComponent(tbhBtn)
@@ -221,17 +247,19 @@ public class TambahNilaiForm extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(mau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sopan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ilPrak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ilPrak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(disHadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(trampil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel10)
+                        .addComponent(trampil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -254,7 +282,8 @@ public class TambahNilaiForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(back)
                     .addComponent(tbhBtn)
-                    .addComponent(hapusBtn))
+                    .addComponent(hapusBtn)
+                    .addComponent(label))
                 .addGap(22, 22, 22))
         );
 
@@ -287,6 +316,8 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Data gagal" + e);
         }
+        loadTable();
+        clear();
     }//GEN-LAST:event_tbhBtnActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
@@ -294,8 +325,29 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void tableViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableViewMouseClicked
-
+        int i = tableView.getSelectedRow();
+        String id = tableView.getValueAt(i, 0).toString();
+        label.setText(id);
     }//GEN-LAST:event_tableViewMouseClicked
+
+    private void hapusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusBtnActionPerformed
+      if (tableView.isRowSelected(tableView.getSelectedRow())) {
+            try {
+                String nur = sopan.getText();
+                String sotres = "delete from nilai_pkn where sopan ='" + nur + "'";
+                PreparedStatement p = (PreparedStatement) a.prepareCall(sotres);
+                p.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+                clear();
+                p.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "This message is error" + e.getMessage());
+            }
+                loadTable();
+        } else {
+            JOptionPane.showMessageDialog(this, "What You Will Be Deleted?");
+        }
+    }//GEN-LAST:event_hapusBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,6 +407,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField kePrak;
+    private javax.swing.JLabel label;
     public javax.swing.JComboBox<String> listNama;
     public javax.swing.JTextField mau;
     public javax.swing.JTextField sopan;
@@ -363,4 +416,42 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     public javax.swing.JTextField tngjwb;
     public javax.swing.JTextField trampil;
     // End of variables declaration//GEN-END:variables
+public void loadTable(){
+        tabel.getDataVector().clear();
+        tabel.fireTableDataChanged();
+        try {
+            String sql = "select * from nilai_pkn";
+            Statement n = a.createStatement();
+            ResultSet rs = n.executeQuery(sql);
+            while (rs.next()) {
+                Object[] o = new Object[11];
+                o[0] = rs.getString("id");
+                o[1] = rs.getString("sopan");
+                o[2] = rs.getString("disHadir");
+                o[3] = rs.getString("disPeker");
+                o[4] = rs.getString("kePrak");
+                o[5] = rs.getString("tngjwb");
+                o[6] = rs.getString("mau");
+                o[7] = rs.getString("ilPrak");
+                o[8] = rs.getString("trampil");
+                o[9] = rs.getString("bicara");
+                o[10] = rs.getString("gaul");
+                tabel.addRow(o);
+            }
+        } catch (SQLException e) {
+
+        }
+}
+
+public void clear(){
+    sopan.setText("");
+    disHadir.setText("");
+    disPeker.setText("");
+    kePrak.setText("");
+    tngjwb.setText("");
+    mau.setText("");
+    ilPrak.setText("");
+    bicara.setText("");
+    gaul.setText("");
+}
 }
