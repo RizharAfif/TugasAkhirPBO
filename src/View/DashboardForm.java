@@ -140,8 +140,8 @@ public class DashboardForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void nilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiActionPerformed
-        NilaiPerusahaan perusahaan = new NilaiPerusahaan();
-        perusahaan.setVisible(true);
+        TambahNilaiForm form = new TambahNilaiForm();
+        form.setVisible(true);
     }//GEN-LAST:event_nilaiActionPerformed
 
     /**

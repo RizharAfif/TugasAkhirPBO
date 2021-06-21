@@ -24,6 +24,7 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
     DefaultTableModel model = new DefaultTableModel();
     Koneksi kon = new Koneksi();
     Connection a = kon.configDB();
+    TambahNilaiForm form = new TambahNilaiForm();
 
     public NilaiPerusahaan() {
         initComponents();
@@ -48,6 +49,7 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
         deleteBtn = new javax.swing.JButton();
         kembali = new javax.swing.JButton();
         code = new javax.swing.JLabel();
+        apus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +91,13 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
 
         code.setText("jLabel1");
 
+        apus.setText("ApusWoy");
+        apus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,6 +117,8 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
                                 .addComponent(print)
                                 .addGap(292, 292, 292))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(apus)
+                                .addGap(90, 90, 90)
                                 .addComponent(deleteBtn)
                                 .addGap(27, 27, 27)
                                 .addComponent(nextBtn)
@@ -123,7 +134,8 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
                 .addContainerGap(108, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nextBtn)
-                    .addComponent(deleteBtn))
+                    .addComponent(deleteBtn)
+                    .addComponent(apus))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -139,20 +151,24 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
-        try {
-            TambahNilaiForm nilai = new TambahNilaiForm();
-            nilai.setVisible(true);
-            this.dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(NilaiPerusahaan.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        TambahNilaiForm nilai = new TambahNilaiForm();
+        nilai.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_nextBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        if (tableView.getSelectedRow() > 0) {
-            JOptionPane.showMessageDialog(this, "Data Successfullly Deleted");
-            try {
-                String sql = "DELETE FROM nilai_pkn where id = '" + code.getText() + "'";
+  
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void tableViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableViewMouseClicked
+        int i = tableView.getSelectedRow();
+        String a = tableView.getValueAt(i, 0).toString();
+        code.setText(a);
+    }//GEN-LAST:event_tableViewMouseClicked
+
+    private void apusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apusActionPerformed
+                  try {
+                String sql = "DELETE FROM nilai_pkn where id = " + code.getText() + "";
                 Statement st = a.createStatement();
                 st.executeUpdate(sql);
                 st.close();
@@ -160,15 +176,8 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Data gagal" + e);
             }
-        }
-    }//GEN-LAST:event_deleteBtnActionPerformed
-
-    private void tableViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableViewMouseClicked
-        int i = tableView.getSelectedRow();
-        String a = tableView.getValueAt(i, 0).toString();
-
-        code.setText(a);
-    }//GEN-LAST:event_tableViewMouseClicked
+        
+    }//GEN-LAST:event_apusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,6 +215,7 @@ public class NilaiPerusahaan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton apus;
     private javax.swing.JLabel code;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JScrollPane jScrollPane1;
@@ -236,7 +246,7 @@ public void loadTable() {
             ResultSet rs = n.executeQuery(sql);
             while (rs.next()) {
                   model.addRow(new Object[]{id++,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),
-                  rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10)});
+                  rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10), rs.getString(11)});
             }
         } catch (SQLException e) {
 
