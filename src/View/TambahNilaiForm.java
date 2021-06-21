@@ -290,9 +290,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_tbhBtnActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        NilaiPerusahaan nilai = new NilaiPerusahaan();
-        nilai.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_backActionPerformed
 
     private void tableViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableViewMouseClicked
