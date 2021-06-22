@@ -306,15 +306,13 @@ public class pengajuanProporsal extends javax.swing.JFrame {
         String d = place.getText();
             String sql = "INSERT INTO tb_mahasiswa (nama, nim, alamat, tempat, waktu, status) VALUES ('"+a+"','"+b+"','"+c+"',"
                     + "'"+d+"', '"+tanggal+"','Belum Diterima')";
-//            String nama = "INSERT INTO nilai_pkn (nama) VALUES ('"+a+"')";
+//            String nama = "INSERT INTO nilai_pkn (nama, sopan, disHadir, disPeker, kePrak, tngjwb, mau, ilPrak, trampil, bicara, gaul) VALUES ('"+a+"','','',''"
+//                    + ",'','','','','','','','')";
             try {
                 PreparedStatement ps = con.prepareCall(sql);
                 ps.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Data Succesfully Added");
-//                PreparedStatement s = con.prepareCall(nama);
-//                s.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data Berhasil ditambah");
                 ps.close();
-//                s.close();
                 clear.doClick();
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
