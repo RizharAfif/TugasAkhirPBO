@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package viewMahasiswa;
 
 import connectionConfig.Koneksi;
 import java.sql.Connection;
@@ -33,7 +33,7 @@ public class pengajuanProporsal extends javax.swing.JFrame {
         model.addColumn("Tempat");
         model.addColumn("Waktu Pelaksanaan");
         loadTable();
-                
+        id.setVisible(false);
     }
 
     /**
@@ -45,8 +45,6 @@ public class pengajuanProporsal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -65,29 +63,10 @@ public class pengajuanProporsal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         id = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
-
-        jLabel1.setText("Pengajuan Proporsal");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(356, 356, 356))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pengajuan Proporsal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 13))); // NOI18N
 
@@ -224,37 +203,62 @@ public class pengajuanProporsal extends javax.swing.JFrame {
 
         id.setText("0");
 
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+
+        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel7.setText("Pengajuan Proporsal");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(32, 32, 32))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
                         .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 228, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(34, 34, 34)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
+                        .addGap(107, 107, 107)
                         .addComponent(id)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         pack();
@@ -286,6 +290,9 @@ public class pengajuanProporsal extends javax.swing.JFrame {
         String e = tabela.getValueAt(tabel, 4).toString();
         place.setText(e);
         
+        String f = tabela.getValueAt(tabel, 5).toString();
+        date.setDateFormatString(f);
+        
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void tbhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbhActionPerformed
@@ -299,15 +306,27 @@ public class pengajuanProporsal extends javax.swing.JFrame {
         String d = place.getText();
             String sql = "INSERT INTO tb_mahasiswa (nama, nim, alamat, tempat, waktu, status) VALUES ('"+a+"','"+b+"','"+c+"',"
                     + "'"+d+"', '"+tanggal+"','Belum Diterima')";
+//            String nama = "INSERT INTO nilai_pkn (nama) VALUES ('"+a+"')";
             try {
                 PreparedStatement ps = con.prepareCall(sql);
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Data Succesfully Added");
+//                PreparedStatement s = con.prepareCall(nama);
+//                s.executeUpdate();
                 ps.close();
+//                s.close();
                 clear.doClick();
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
+            
+//            try {
+//            PreparedStatement s = con.prepareCall(nama);
+//            s.executeUpdate();
+//            s.close();
+//            clear.doClick();
+//        } catch (Exception e) {
+//        }
             loadTable();
     }//GEN-LAST:event_tbhActionPerformed
 
@@ -317,8 +336,10 @@ public class pengajuanProporsal extends javax.swing.JFrame {
         String c = address.getText();
         String d = place.getText();
         String e = id.getText();
-//        date.setVisible(false);
-        String sql = "update tb_mahasiswa set nama = '"+a+"', nim = '"+b+"', alamat = '"+c+"', tempat = '"+d+"' where id_mahasiswa = '"+e+"'";
+        String tampilan = "yyyy-MM-dd";
+        SimpleDateFormat fm = new SimpleDateFormat(tampilan);
+        String tanggal = String.valueOf(fm.format(date.getDate()));
+        String sql = "update tb_mahasiswa set nama = '"+a+"', nim = '"+b+"', alamat = '"+c+"', tempat = '"+d+"', waktu = '"+tanggal+"' where id_mahasiswa = '"+e+"'";
         try {
             PreparedStatement ps = con.prepareCall(sql);
             ps.executeUpdate();
@@ -397,14 +418,14 @@ public class pengajuanProporsal extends javax.swing.JFrame {
     private javax.swing.JButton delete;
     private javax.swing.JButton edit;
     private javax.swing.JLabel id;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField name;
     private javax.swing.JTextField nim;

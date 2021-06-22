@@ -5,6 +5,7 @@
  */
 package View;
 
+import viewMahasiswa.pengajuanProporsal;
 import viewAdmin.TambahNilaiForm;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -149,6 +150,7 @@ public class DashboardForm extends javax.swing.JFrame {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         LoginForm form = new LoginForm();
         form.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void nilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiActionPerformed

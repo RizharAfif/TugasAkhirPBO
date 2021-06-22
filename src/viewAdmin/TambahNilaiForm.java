@@ -54,8 +54,6 @@ public class TambahNilaiForm extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         listNama = new javax.swing.JComboBox<>();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         sopan = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -82,33 +80,15 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         tableView = new javax.swing.JTable();
         hapusBtn = new javax.swing.JButton();
         label = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Nama ");
 
         listNama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih Nama--", " " }));
-
-        jPanel1.setBackground(new java.awt.Color(0, 153, 204));
-
-        jLabel2.setText("Nilai Perusahaan");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(310, 310, 310))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2)
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
 
         jLabel3.setText("SOPAN SANTUN");
 
@@ -177,11 +157,42 @@ public class TambahNilaiForm extends javax.swing.JFrame {
 
         label.setText("0");
 
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel2.setText("Nilai PKN Dari Perusahaan");
+
+        id.setText("0");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel2)
+                .addGap(130, 130, 130)
+                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(762, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(id)
+                        .addGap(24, 24, 24))))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,12 +246,13 @@ public class TambahNilaiForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1197, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(listNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,15 +338,15 @@ public class TambahNilaiForm extends javax.swing.JFrame {
 
     private void tableViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableViewMouseClicked
         int i = tableView.getSelectedRow();
-        String id = tableView.getValueAt(i, 0).toString();
-        label.setText(id);
+        String a = tableView.getValueAt(i, 0).toString();
+        id.setText(a);
     }//GEN-LAST:event_tableViewMouseClicked
 
     private void hapusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusBtnActionPerformed
       if (tableView.isRowSelected(tableView.getSelectedRow())) {
             try {
-                String nur = sopan.getText();
-                String sotres = "delete from nilai_pkn where sopan ='" + nur + "'";
+                String nur = id.getText();
+                String sotres = "delete from nilai_pkn where id ='" + nur + "'";
                 PreparedStatement p = (PreparedStatement) a.prepareCall(sotres);
                 p.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
@@ -391,6 +403,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     public javax.swing.JTextField disPeker;
     public javax.swing.JTextField gaul;
     private javax.swing.JButton hapusBtn;
+    private javax.swing.JLabel id;
     public javax.swing.JTextField ilPrak;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -404,7 +417,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField kePrak;
     private javax.swing.JLabel label;
@@ -417,7 +430,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     public javax.swing.JTextField trampil;
     // End of variables declaration//GEN-END:variables
 public void loadTable(){
-        tabel.getDataVector().clear();
+        tabel.getDataVector().removeAllElements();
         tabel.fireTableDataChanged();
         try {
             String sql = "select * from nilai_pkn";
