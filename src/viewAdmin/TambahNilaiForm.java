@@ -29,6 +29,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         initComponents();
         tableView.setModel(tabel);
         tabel.addColumn("id");
+        tabel.addColumn("Nama");
         tabel.addColumn("Sopan");
         tabel.addColumn("Disiplin Hadir");
         tabel.addColumn("Disiplin Pekerjaan");
@@ -40,6 +41,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         tabel.addColumn("Berbicara");
         tabel.addColumn("Bergaul");
         label.setVisible(false);
+        loadCombo();
         loadTable();
     }
 
@@ -88,9 +90,15 @@ public class TambahNilaiForm extends javax.swing.JFrame {
 
         jLabel1.setText("Nama ");
 
-        listNama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih Nama--", " " }));
+        listNama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Pilih Nama--" }));
 
         jLabel3.setText("SOPAN SANTUN");
+
+        sopan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sopanActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("DISIPLIN DALAM PEKERJAAN");
 
@@ -308,6 +316,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
 
     private void tbhBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbhBtnActionPerformed
         try {
+//            Object nama = listNama.getSelectedItem();
             int Tsopan = Integer.parseInt(sopan.getText());
             int Tdishadir = Integer.parseInt(disHadir.getText());
             int Tdispeker = Integer.parseInt(disPeker.getText());
@@ -318,8 +327,8 @@ public class TambahNilaiForm extends javax.swing.JFrame {
             int Ttrampil = Integer.parseInt(trampil.getText());
             int Tbicara = Integer.parseInt(bicara.getText());
             int Tgaul = Integer.parseInt(gaul.getText());
-            String sql = "insert into nilai_pkn (sopan, disHadir, disPeker, kePrak, tngjwb, mau, ilPrak, trampil, bicara, gaul)"
-                    + "VALUES ('" + Tsopan + "', '" + Tdishadir + "', '" + Tdispeker + "', '" + TkePrak + "', '" + Tjawab + "',"
+            String sql = "insert into nilai_pkn (nama, sopan, disHadir, disPeker, kePrak, tngjwb, mau, ilPrak, trampil, bicara, gaul)"
+                    + "VALUES ('"+listNama.getSelectedItem()+"','" + Tsopan + "', '" + Tdishadir + "', '" + Tdispeker + "', '" + TkePrak + "', '" + Tjawab + "',"
                     + "'" + Tmau + "','" + TilPrak + "', '" + Ttrampil + "', '" + Tbicara + "', '" + Tgaul + "')";
             PreparedStatement ps = a.prepareStatement(sql);
             ps.execute();
@@ -329,6 +338,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Data gagal" + e);
         }
         loadTable();
+        loadCombo();
         clear();
     }//GEN-LAST:event_tbhBtnActionPerformed
 
@@ -360,6 +370,10 @@ public class TambahNilaiForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "What You Will Be Deleted?");
         }
     }//GEN-LAST:event_hapusBtnActionPerformed
+
+    private void sopanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sopanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sopanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -437,18 +451,19 @@ public void loadTable(){
             Statement n = a.createStatement();
             ResultSet rs = n.executeQuery(sql);
             while (rs.next()) {
-                Object[] o = new Object[11];
+                Object[] o = new Object[12];
                 o[0] = rs.getString("id");
-                o[1] = rs.getString("sopan");
-                o[2] = rs.getString("disHadir");
-                o[3] = rs.getString("disPeker");
-                o[4] = rs.getString("kePrak");
-                o[5] = rs.getString("tngjwb");
-                o[6] = rs.getString("mau");
-                o[7] = rs.getString("ilPrak");
-                o[8] = rs.getString("trampil");
-                o[9] = rs.getString("bicara");
-                o[10] = rs.getString("gaul");
+                o[1] = rs.getString("nama");
+                o[2] = rs.getString("sopan");
+                o[3] = rs.getString("disHadir");
+                o[4] = rs.getString("disPeker");
+                o[5] = rs.getString("kePrak");
+                o[6] = rs.getString("tngjwb");
+                o[7] = rs.getString("mau");
+                o[8] = rs.getString("ilPrak");
+                o[9] = rs.getString("trampil");
+                o[10] = rs.getString("bicara");
+                o[11] = rs.getString("gaul");    
                 tabel.addRow(o);
             }
         } catch (SQLException e) {
@@ -462,9 +477,26 @@ public void clear(){
     disPeker.setText("");
     kePrak.setText("");
     tngjwb.setText("");
+    trampil.setText("");
     mau.setText("");
     ilPrak.setText("");
     bicara.setText("");
     gaul.setText("");
+}
+
+public void loadCombo(){
+    try {
+        String sql = "select nama from tb_mahasiswa where status = 'Diterima'";
+        Statement s = a.createStatement();
+        ResultSet rs = s.executeQuery(sql);
+        
+        while(rs.next()){
+             Object[] o = new Object[3];
+             o[0] = rs.getString("nama");
+             listNama.addItem((String) o[0]);
+        }
+        rs.close();
+    } catch (Exception e) {
+    }
 }
 }

@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import viewAdmin.PersetujuanData;
+import viewMahasiswa.DaftarForm;
 
 /**
  *
@@ -94,6 +95,11 @@ public class DashboardForm extends javax.swing.JFrame {
         });
 
         penjadwalan1.setText("Penjadwalan Ujian");
+        penjadwalan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                penjadwalan1ActionPerformed(evt);
+            }
+        });
 
         nilai.setText("Nilai PKN");
         nilai.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +175,12 @@ public class DashboardForm extends javax.swing.JFrame {
        s.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_approveActionPerformed
+
+    private void penjadwalan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_penjadwalan1ActionPerformed
+        DaftarForm daftar = new DaftarForm();
+        daftar.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_penjadwalan1ActionPerformed
 
     /**
      * @param args the command line arguments
