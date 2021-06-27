@@ -81,7 +81,9 @@
               <Component id="tbhBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="hapusBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="417" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="printButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="326" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
@@ -147,6 +149,7 @@
                   <Component id="tbhBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hapusBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="printButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
@@ -280,6 +283,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="tbhBtn">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Tambah"/>
       </Properties>
       <Events>
@@ -288,6 +300,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="back">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Kembali"/>
       </Properties>
       <Events>
@@ -333,6 +354,15 @@
     </Container>
     <Component class="javax.swing.JButton" name="hapusBtn">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="0" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Hapus"/>
       </Properties>
       <Events>
@@ -400,5 +430,22 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="printButton">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="13" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Print"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printButtonActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

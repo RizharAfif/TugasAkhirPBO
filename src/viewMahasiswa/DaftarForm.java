@@ -5,6 +5,7 @@
  */
 package viewMahasiswa;
 
+import View.DashboardForm;
 import controllerMahasiswa.ControllerMahasiswa;
 import java.io.File;
 import javax.swing.*;
@@ -52,6 +53,7 @@ public class DaftarForm extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         simpanBtn = new javax.swing.JButton();
         clearBtn = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelData = new javax.swing.JTable();
 
@@ -163,6 +165,16 @@ public class DaftarForm extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(0, 204, 204));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 153, 153));
+        jButton2.setText("Kembali");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -192,7 +204,9 @@ public class DaftarForm extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addComponent(simpanBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(clearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(clearBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -222,7 +236,8 @@ public class DaftarForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(simpanBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(clearBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(clearBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -301,6 +316,12 @@ public class DaftarForm extends javax.swing.JFrame {
    cbt.cariFile();
     }//GEN-LAST:event_cariActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        DashboardForm form = new DashboardForm();
+        form.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -341,6 +362,7 @@ public class DaftarForm extends javax.swing.JFrame {
     private javax.swing.JButton clearBtn;
     private javax.swing.JLabel id;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

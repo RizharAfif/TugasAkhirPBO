@@ -6,15 +6,23 @@
 package viewAdmin;
 
 import connectionConfig.Koneksi;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -40,7 +48,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         tabel.addColumn("Ketrampilan");
         tabel.addColumn("Berbicara");
         tabel.addColumn("Bergaul");
-        label.setVisible(false);
+        label.setVisible(true);
         loadCombo();
         loadTable();
     }
@@ -85,6 +93,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
+        printButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,6 +133,9 @@ public class TambahNilaiForm extends javax.swing.JFrame {
             }
         });
 
+        tbhBtn.setBackground(new java.awt.Color(0, 204, 204));
+        tbhBtn.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        tbhBtn.setForeground(new java.awt.Color(0, 153, 153));
         tbhBtn.setText("Tambah");
         tbhBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +143,9 @@ public class TambahNilaiForm extends javax.swing.JFrame {
             }
         });
 
+        back.setBackground(new java.awt.Color(0, 204, 204));
+        back.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        back.setForeground(new java.awt.Color(0, 153, 153));
         back.setText("Kembali");
         back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +171,9 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableView);
 
+        hapusBtn.setBackground(new java.awt.Color(0, 204, 204));
+        hapusBtn.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        hapusBtn.setForeground(new java.awt.Color(0, 153, 153));
         hapusBtn.setText("Hapus");
         hapusBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,6 +214,16 @@ public class TambahNilaiForm extends javax.swing.JFrame {
                         .addComponent(id)
                         .addGap(24, 24, 24))))
         );
+
+        printButton.setBackground(new java.awt.Color(0, 204, 204));
+        printButton.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        printButton.setForeground(new java.awt.Color(0, 153, 153));
+        printButton.setText("Print");
+        printButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,7 +277,9 @@ public class TambahNilaiForm extends javax.swing.JFrame {
                 .addComponent(tbhBtn)
                 .addGap(18, 18, 18)
                 .addComponent(hapusBtn)
-                .addGap(417, 417, 417))
+                .addGap(18, 18, 18)
+                .addComponent(printButton)
+                .addGap(326, 326, 326))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1197, Short.MAX_VALUE)
@@ -303,7 +333,8 @@ public class TambahNilaiForm extends javax.swing.JFrame {
                     .addComponent(back)
                     .addComponent(tbhBtn)
                     .addComponent(hapusBtn)
-                    .addComponent(label))
+                    .addComponent(label)
+                    .addComponent(printButton))
                 .addGap(22, 22, 22))
         );
 
@@ -327,9 +358,12 @@ public class TambahNilaiForm extends javax.swing.JFrame {
             int Ttrampil = Integer.parseInt(trampil.getText());
             int Tbicara = Integer.parseInt(bicara.getText());
             int Tgaul = Integer.parseInt(gaul.getText());
-            String sql = "insert into nilai_pkn (nama, sopan, disHadir, disPeker, kePrak, tngjwb, mau, ilPrak, trampil, bicara, gaul)"
+            int total = Tsopan + Tdishadir + Tdispeker + TkePrak + Tjawab + Tmau + TilPrak + Ttrampil + 
+                    Tbicara + Tgaul;
+            int hasil = total /10;
+            String sql = "insert into nilai_pkn (nama, sopan, disHadir, disPeker, kePrak, tngjwb, mau, ilPrak, trampil, bicara, gaul, total)"
                     + "VALUES ('"+listNama.getSelectedItem()+"','" + Tsopan + "', '" + Tdishadir + "', '" + Tdispeker + "', '" + TkePrak + "', '" + Tjawab + "',"
-                    + "'" + Tmau + "','" + TilPrak + "', '" + Ttrampil + "', '" + Tbicara + "', '" + Tgaul + "')";
+                    + "'" + Tmau + "','" + TilPrak + "', '" + Ttrampil + "', '" + Tbicara + "', '" + Tgaul + "', '"+hasil+"')";
             PreparedStatement ps = a.prepareStatement(sql);
             ps.execute();
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
@@ -374,6 +408,20 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     private void sopanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sopanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sopanActionPerformed
+
+    private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
+       try {
+        String file = "src/reportForm/report1.jasper";
+            HashMap h = new HashMap();
+            
+            h.put("id", Integer.valueOf(id.getText()));
+
+            JasperPrint print = JasperFillManager.fillReport(file, h);
+            JasperViewer.viewReport(print, false);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_printButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -437,6 +485,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     private javax.swing.JLabel label;
     public javax.swing.JComboBox<String> listNama;
     public javax.swing.JTextField mau;
+    private javax.swing.JButton printButton;
     public javax.swing.JTextField sopan;
     public javax.swing.JTable tableView;
     private javax.swing.JButton tbhBtn;
@@ -472,6 +521,7 @@ public void loadTable(){
 }
 
 public void clear(){
+    listNama.setSelectedItem("--Pilih Nama--");
     sopan.setText("");
     disHadir.setText("");
     disPeker.setText("");

@@ -162,6 +162,7 @@ public class DashboardForm extends javax.swing.JFrame {
     private void nilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiActionPerformed
         TambahNilaiForm form = new TambahNilaiForm();
         form.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_nilaiActionPerformed
 
     private void proporsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proporsalActionPerformed
