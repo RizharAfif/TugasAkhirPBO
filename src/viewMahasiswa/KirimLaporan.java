@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package viewAdmin;
+package viewMahasiswa;
 
+import viewAdmin.*;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import javax.mail.Authenticator;
@@ -22,12 +23,12 @@ import viewAdmin.TambahNilaiForm;
  *
  * @author LEGION
  */
-public class KirimEmailNilai extends javax.swing.JFrame {
+public class KirimLaporan extends javax.swing.JFrame {
 
     /**
      * Creates new form KirimEmailNilai
      */
-    public KirimEmailNilai() {
+    public KirimLaporan() {
         initComponents();
     }
 
@@ -211,7 +212,7 @@ public class KirimEmailNilai extends javax.swing.JFrame {
             Session session = Session.getInstance(props, new EmailAuth());
             Message pesan = new MimeMessage(session);
 
-            InternetAddress dari = new InternetAddress("rizharafif11@gmail.com", "Dari " + subjek.getText());
+            InternetAddress dari = new InternetAddress("rizharafif12@gmail.com", "Dari " + subjek.getText());
             pesan.setFrom(dari);
 
             InternetAddress tujuan = new InternetAddress(kirim.getText());
@@ -251,20 +252,23 @@ public class KirimEmailNilai extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(KirimEmailNilai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KirimLaporan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(KirimEmailNilai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KirimLaporan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(KirimEmailNilai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KirimLaporan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(KirimEmailNilai.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KirimLaporan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new KirimEmailNilai().setVisible(true);
+                new KirimLaporan().setVisible(true);
             }
         });
     }
@@ -293,7 +297,7 @@ public class KirimEmailNilai extends javax.swing.JFrame {
             * Tolong jangan di hack :)
             * Penting :)
              */
-            return new PasswordAuthentication("rizharafif11@gmail.com", "kocengoren66");
+            return new PasswordAuthentication("rizharafif12@gmail.com", "kucingoren12");
         }
     }
 }
