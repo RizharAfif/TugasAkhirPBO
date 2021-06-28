@@ -5,7 +5,6 @@
  */
 package viewMahasiswa;
 
-import View.DashboardForm;
 import controllerMahasiswa.ControllerMahasiswa;
 import java.io.File;
 import javax.swing.*;
@@ -317,7 +316,7 @@ public class DaftarForm extends javax.swing.JFrame {
     }//GEN-LAST:event_cariActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        DashboardForm form = new DashboardForm();
+        DashboardMahasiswa form = new DashboardMahasiswa();
         form.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

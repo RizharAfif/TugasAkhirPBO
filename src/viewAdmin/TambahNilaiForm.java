@@ -5,7 +5,6 @@
  */
 package viewAdmin;
 
-import View.DashboardForm;
 import connectionConfig.Koneksi;
 import java.io.File;
 import java.sql.Connection;
@@ -378,7 +377,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_tbhBtnActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-    DashboardForm form = new DashboardForm();
+    DashboardAdmin form = new DashboardAdmin();
     form.setVisible(true);
     this.dispose();
     }//GEN-LAST:event_backActionPerformed

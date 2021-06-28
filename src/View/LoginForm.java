@@ -5,17 +5,14 @@
  */
 package View;
 
-import static View.DashboardForm.approve;
-import static View.DashboardForm.daftar;
-import static View.DashboardForm.nilai;
-import static View.DashboardForm.penjadwalan1;
-import static View.DashboardForm.proporsal;
-import static View.DashboardForm.ujian;
 import connectionConfig.Koneksi;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import viewAdmin.DashboardAdmin;
+import viewDosen.DashboardDosen;
+import viewMahasiswa.DashboardMahasiswa;
 
 /**
  *
@@ -25,11 +22,15 @@ public class LoginForm extends javax.swing.JFrame {
 
     Koneksi con = new Koneksi();
     Connection a = con.configDB();
-    DashboardForm dash = new DashboardForm();
+    DashboardAdmin admin = new DashboardAdmin();
+    DashboardDosen dosen = new DashboardDosen();
+    DashboardMahasiswa mhs = new DashboardMahasiswa();
 
     public LoginForm() {
         initComponents();
-        dash.setVisible(false);
+        admin.setVisible(false);
+        dosen.setVisible(false);
+        mhs.setVisible(false);
     }
 
     /**
@@ -168,14 +169,14 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-login();
+        login();
     }//GEN-LAST:event_loginActionPerformed
 
     private void klrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_klrActionPerformed
         // TODO add your handling code here:
         int saya;
 
-        saya = JOptionPane.showConfirmDialog(this, "Sure Will Come Out Application?", "Information", JOptionPane.YES_NO_OPTION);
+        saya = JOptionPane.showConfirmDialog(this, "Yakin mau kelular?", "Information", JOptionPane.YES_NO_OPTION);
         if (saya == JOptionPane.YES_OPTION) {
             System.exit(0);
         } else {
@@ -242,35 +243,17 @@ public void login() {
             String sql = "select * from login_user where user='" + User + "' and pass='" + Pass + "'";
             Statement s = a.createStatement();
             ResultSet rs = s.executeQuery(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 String hak = rs.getString("hakakses");
-                if(hak.equals("Admin")){
-                     dash.setVisible(true);
-                        daftar.setEnabled(false);
-                        proporsal.setEnabled(false);
-                        approve.setEnabled(true);
-                        penjadwalan1.setEnabled(true);
-                        nilai.setEnabled(true);
-                        ujian.setEnabled(false);
+                if (hak.equals("Admin")) {
+                    admin.setVisible(true);
                     this.dispose();
-                } else if(hak.equals("Mahasiswa")){
-                    dash.setVisible(true);
-                        daftar.setEnabled(true);
-                        proporsal.setEnabled(true);
-                        approve.setEnabled(false);
-                        penjadwalan1.setEnabled(false);
-                        nilai.setEnabled(false);
-                        ujian.setEnabled(false);
-                        this.dispose();
-                } else if(hak.equals("Dosen")){
-                    dash.setVisible(true);
-                        daftar.setEnabled(false);
-                        proporsal.setEnabled(false);
-                        approve.setEnabled(false);
-                        penjadwalan1.setEnabled(false);
-                        nilai.setEnabled(false);
-                        ujian.setEnabled(true);
-                        this.dispose();
+                } else if (hak.equals("Mahasiswa")) {
+                    mhs.setVisible(true);
+                    this.dispose();
+                } else if (hak.equals("Dosen")) {
+                    dosen.setVisible(true);
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(this, "Login gagal");
                 }

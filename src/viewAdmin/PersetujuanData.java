@@ -5,7 +5,6 @@
  */
 package viewAdmin;
 
-import View.DashboardForm;
 import connectionConfig.Koneksi;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +22,7 @@ public class PersetujuanData extends javax.swing.JFrame {
     Koneksi con = new Koneksi();
     Connection a = con.configDB();
     DefaultTableModel model = new DefaultTableModel();
+
     public PersetujuanData() {
         initComponents();
         tblApprove.setModel(model);
@@ -63,7 +63,7 @@ public class PersetujuanData extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         edit = new javax.swing.JButton();
         kirim = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -195,13 +195,13 @@ public class PersetujuanData extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 204, 204));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 153, 153));
-        jButton2.setText("Kembali");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        back.setBackground(new java.awt.Color(0, 204, 204));
+        back.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        back.setForeground(new java.awt.Color(0, 153, 153));
+        back.setText("Kembali");
+        back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                backActionPerformed(evt);
             }
         });
 
@@ -213,7 +213,7 @@ public class PersetujuanData extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -226,7 +226,7 @@ public class PersetujuanData extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(kirim, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -263,21 +263,21 @@ public class PersetujuanData extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblApproveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblApproveKeyTyped
-      
+
     }//GEN-LAST:event_tblApproveKeyTyped
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
-       String i = id.getText();
-       String cek = diterima.getText();
+        String i = id.getText();
+        String cek = diterima.getText();
         try {
-            String sql = "update tb_mahasiswa set status = '"+cek+"' where id_mahasiswa = '"+i+"'";
+            String sql = "update tb_mahasiswa set status = '" + cek + "' where id_mahasiswa = '" + i + "'";
             PreparedStatement ps = a.prepareCall(sql);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(this, "Data Berhasil diedit");
             name.setText("");
             place.setText("");
             date.setDateFormatString("");
-             ps.close();
+            ps.close();
         } catch (Exception e) {
         }
         loadTable();
@@ -285,31 +285,32 @@ public class PersetujuanData extends javax.swing.JFrame {
 
     private void tblApproveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblApproveMouseClicked
         int tabel = tblApprove.getSelectedRow();
-       
+
         String a = tblApprove.getValueAt(tabel, 0).toString();
         id.setText(a);
-        
+
         String b = tblApprove.getValueAt(tabel, 1).toString();
         name.setText(b);
-        
+
         String c = tblApprove.getValueAt(tabel, 2).toString();
         place.setText(c);
-        
+
         String d = tblApprove.getValueAt(tabel, 3).toString();
         date.setDateFormatString(d);
     }//GEN-LAST:event_tblApproveMouseClicked
 
     private void kirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kirimActionPerformed
-        DashboardForm form = new DashboardForm();
-        form.setVisible(true);
+        KirimEmailNilai nilai = new KirimEmailNilai();
+        nilai.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_kirimActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       KirimEmailNilai nilai = new KirimEmailNilai();
-       nilai.setVisible(true);
-       this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+
+        DashboardAdmin form = new DashboardAdmin();
+        form.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,11 +348,11 @@ public class PersetujuanData extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private com.toedter.calendar.JDateChooser date;
     private javax.swing.JCheckBox diterima;
     private javax.swing.JButton edit;
     private javax.swing.JLabel id;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -374,7 +375,7 @@ public class PersetujuanData extends javax.swing.JFrame {
             String sql = "select * from tb_mahasiswa";
             Statement n = a.createStatement();
             ResultSet rs = n.executeQuery(sql);
-            while (rs.next()) {                
+            while (rs.next()) {
                 Object[] o = new Object[6];
                 o[0] = rs.getString("id_mahasiswa");
                 o[1] = rs.getString("nama");

@@ -195,7 +195,7 @@ public class KirimEmailNilai extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        TambahNilaiForm form = new TambahNilaiForm();
+        PersetujuanData form = new PersetujuanData();
         form.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backActionPerformed
