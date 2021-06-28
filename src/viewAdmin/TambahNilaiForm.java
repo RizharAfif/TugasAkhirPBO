@@ -94,6 +94,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
         printButton = new javax.swing.JButton();
+        printButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -225,6 +226,16 @@ public class TambahNilaiForm extends javax.swing.JFrame {
             }
         });
 
+        printButton1.setBackground(new java.awt.Color(0, 204, 204));
+        printButton1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        printButton1.setForeground(new java.awt.Color(0, 153, 153));
+        printButton1.setText("Kirim Email");
+        printButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -279,7 +290,9 @@ public class TambahNilaiForm extends javax.swing.JFrame {
                 .addComponent(hapusBtn)
                 .addGap(18, 18, 18)
                 .addComponent(printButton)
-                .addGap(326, 326, 326))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(printButton1)
+                .addGap(256, 256, 256))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1197, Short.MAX_VALUE)
@@ -334,7 +347,8 @@ public class TambahNilaiForm extends javax.swing.JFrame {
                     .addComponent(tbhBtn)
                     .addComponent(hapusBtn)
                     .addComponent(label)
-                    .addComponent(printButton))
+                    .addComponent(printButton)
+                    .addComponent(printButton1))
                 .addGap(22, 22, 22))
         );
 
@@ -423,6 +437,12 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_printButtonActionPerformed
 
+    private void printButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButton1ActionPerformed
+        KirimEmailNilai nilai = new KirimEmailNilai();
+        nilai.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_printButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -486,6 +506,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> listNama;
     public javax.swing.JTextField mau;
     private javax.swing.JButton printButton;
+    private javax.swing.JButton printButton1;
     public javax.swing.JTextField sopan;
     public javax.swing.JTable tableView;
     private javax.swing.JButton tbhBtn;
