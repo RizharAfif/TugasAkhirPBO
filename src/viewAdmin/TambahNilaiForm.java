@@ -108,6 +108,11 @@ public class TambahNilaiForm extends javax.swing.JFrame {
                 sopanActionPerformed(evt);
             }
         });
+        sopan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                sopanKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("DISIPLIN DALAM PEKERJAAN");
 
@@ -130,6 +135,59 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         disHadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 disHadirActionPerformed(evt);
+            }
+        });
+        disHadir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                disHadirKeyTyped(evt);
+            }
+        });
+
+        disPeker.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                disPekerKeyTyped(evt);
+            }
+        });
+
+        kePrak.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                kePrakKeyTyped(evt);
+            }
+        });
+
+        tngjwb.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tngjwbKeyTyped(evt);
+            }
+        });
+
+        mau.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                mauKeyTyped(evt);
+            }
+        });
+
+        ilPrak.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ilPrakKeyTyped(evt);
+            }
+        });
+
+        trampil.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                trampilKeyTyped(evt);
+            }
+        });
+
+        bicara.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                bicaraKeyTyped(evt);
+            }
+        });
+
+        gaul.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                gaulKeyTyped(evt);
             }
         });
 
@@ -424,6 +482,86 @@ public class TambahNilaiForm extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_printButtonActionPerformed
+
+    private void sopanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sopanKeyTyped
+        char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_sopanKeyTyped
+
+    private void disHadirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_disHadirKeyTyped
+        char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_disHadirKeyTyped
+
+    private void disPekerKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_disPekerKeyTyped
+       char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_disPekerKeyTyped
+
+    private void kePrakKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kePrakKeyTyped
+       char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_kePrakKeyTyped
+
+    private void tngjwbKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tngjwbKeyTyped
+        char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_tngjwbKeyTyped
+
+    private void mauKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mauKeyTyped
+       char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_mauKeyTyped
+
+    private void ilPrakKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ilPrakKeyTyped
+        char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_ilPrakKeyTyped
+
+    private void trampilKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_trampilKeyTyped
+        char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_trampilKeyTyped
+
+    private void bicaraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bicaraKeyTyped
+       char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_bicaraKeyTyped
+
+    private void gaulKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gaulKeyTyped
+      char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_gaulKeyTyped
 
     /**
      * @param args the command line arguments

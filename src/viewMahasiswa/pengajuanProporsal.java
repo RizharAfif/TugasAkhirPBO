@@ -21,9 +21,11 @@ import javax.swing.table.DefaultTableModel;
  * @author LEGION
  */
 public class pengajuanProporsal extends javax.swing.JFrame {
+
     DefaultTableModel model = new DefaultTableModel();
     Koneksi kon = new Koneksi();
     Connection con = kon.configDB();
+
     public pengajuanProporsal() {
         initComponents();
         tabela.setModel(model);
@@ -333,16 +335,17 @@ public class pengajuanProporsal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nimKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nimKeyTyped
-       // berfungsi untuk hanya menampilkan angka
-       char kar = evt.getKeyChar();
+        // berfungsi untuk hanya menampilkan angka
+        char kar = evt.getKeyChar();
         if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
             evt.consume();
         }
     }//GEN-LAST:event_nimKeyTyped
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         int tabel = tabela.getSelectedRow();
-        
+
         String a = tabela.getValueAt(tabel, 0).toString();
         id.setText(a);
 
@@ -357,10 +360,10 @@ public class pengajuanProporsal extends javax.swing.JFrame {
 
         String e = tabela.getValueAt(tabel, 4).toString();
         place.setText(e);
-        
+
         String f = tabela.getValueAt(tabel, 5).toString();
         date.setDateFormatString(f);
-        
+
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void tbhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbhActionPerformed
@@ -371,20 +374,20 @@ public class pengajuanProporsal extends javax.swing.JFrame {
         String b = nim.getText();
         String c = address.getText();
         String d = place.getText();
-            String sql = "INSERT INTO tb_mahasiswa (nama, nim, alamat, tempat, waktu, status) VALUES ('"+a+"','"+b+"','"+c+"',"
-                    + "'"+d+"', '"+tanggal+"','Belum Diterima')";
+        String sql = "INSERT INTO tb_mahasiswa (nama, nim, alamat, tempat, waktu, status, judulPkn, nilai) VALUES ('" + a + "','" + b + "','" + c + "',"
+                + "'" + d + "', '" + tanggal + "','Belum Diterima', '','')";
 //            String nama = "INSERT INTO nilai_pkn (nama, sopan, disHadir, disPeker, kePrak, tngjwb, mau, ilPrak, trampil, bicara, gaul) VALUES ('"+a+"','','',''"
 //                    + ",'','','','','','','','')";
-            try {
-                PreparedStatement ps = con.prepareCall(sql);
-                ps.executeUpdate();
-                JOptionPane.showMessageDialog(this, "Data Berhasil ditambah");
-                ps.close();
-                clear.doClick();
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-            
+        try {
+            PreparedStatement ps = con.prepareCall(sql);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Data Berhasil ditambah");
+            ps.close();
+            clear.doClick();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
 //            try {
 //            PreparedStatement s = con.prepareCall(nama);
 //            s.executeUpdate();
@@ -392,7 +395,7 @@ public class pengajuanProporsal extends javax.swing.JFrame {
 //            clear.doClick();
 //        } catch (Exception e) {
 //        }
-            loadTable();
+        loadTable();
     }//GEN-LAST:event_tbhActionPerformed
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
@@ -404,7 +407,7 @@ public class pengajuanProporsal extends javax.swing.JFrame {
         String tampilan = "yyyy-MM-dd";
         SimpleDateFormat fm = new SimpleDateFormat(tampilan);
         String tanggal = String.valueOf(fm.format(date.getDate()));
-        String sql = "update tb_mahasiswa set nama = '"+a+"', nim = '"+b+"', alamat = '"+c+"', tempat = '"+d+"', waktu = '"+tanggal+"' where id_mahasiswa = '"+e+"'";
+        String sql = "update tb_mahasiswa set nama = '" + a + "', nim = '" + b + "', alamat = '" + c + "', tempat = '" + d + "', waktu = '" + tanggal + "' where id_mahasiswa = '" + e + "'";
         try {
             PreparedStatement ps = con.prepareCall(sql);
             ps.executeUpdate();
@@ -419,9 +422,9 @@ public class pengajuanProporsal extends javax.swing.JFrame {
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         String mahasiswa = id.getText();
-        if(tabela.isRowSelected(tabela.getSelectedRow())){
+        if (tabela.isRowSelected(tabela.getSelectedRow())) {
             try {
-                String sql = "delete from tb_mahasiswa where id_mahasiswa = '"+mahasiswa+"'";
+                String sql = "delete from tb_mahasiswa where id_mahasiswa = '" + mahasiswa + "'";
                 PreparedStatement ps = con.prepareCall(sql);
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Data Succesfully Deleted");
@@ -442,9 +445,9 @@ public class pengajuanProporsal extends javax.swing.JFrame {
     }//GEN-LAST:event_clearActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       DashboardMahasiswa form = new DashboardMahasiswa();
-       form.setVisible(true);
-       this.dispose();
+        DashboardMahasiswa form = new DashboardMahasiswa();
+        form.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void nimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nimActionPerformed
@@ -452,9 +455,9 @@ public class pengajuanProporsal extends javax.swing.JFrame {
     }//GEN-LAST:event_nimActionPerformed
 
     private void kirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kirimActionPerformed
-       KirimLaporan form = new KirimLaporan();
-       form.setVisible(true);
-       this.dispose();
+        KirimLaporan form = new KirimLaporan();
+        form.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_kirimActionPerformed
 
     /**
@@ -517,7 +520,7 @@ public class pengajuanProporsal extends javax.swing.JFrame {
     private javax.swing.JTable tabela;
     private javax.swing.JButton tbh;
     // End of variables declaration//GEN-END:variables
-public void loadTable(){
+public void loadTable() {
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         try {
@@ -538,5 +541,5 @@ public void loadTable(){
         } catch (SQLException e) {
 
         }
-}
+    }
 }

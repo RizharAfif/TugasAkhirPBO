@@ -48,8 +48,6 @@ public class NilaiUjian extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        id = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -63,32 +61,15 @@ public class NilaiUjian extends javax.swing.JFrame {
         tambah = new javax.swing.JButton();
         edit = new javax.swing.JButton();
         hapus = new javax.swing.JButton();
-        reset = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelmhs = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        id = new javax.swing.JLabel();
+        reset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(51, 255, 204));
-
-        id.setText("0");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(225, 225, 225)
-                .addComponent(id)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(id)
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
 
         jLabel1.setText("Nama ");
 
@@ -99,6 +80,29 @@ public class NilaiUjian extends javax.swing.JFrame {
         jLabel4.setText("Keaktifan mahasiswa");
 
         pilihnama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih nama" }));
+
+        tgktkeberhasilan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tgktkeberhasilanActionPerformed(evt);
+            }
+        });
+        tgktkeberhasilan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tgktkeberhasilanKeyTyped(evt);
+            }
+        });
+
+        penulisanbukulaporan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                penulisanbukulaporanKeyTyped(evt);
+            }
+        });
+
+        keaktifanmahasiswa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                keaktifanmahasiswaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -112,12 +116,12 @@ public class NilaiUjian extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tgktkeberhasilan)
-                    .addComponent(pilihnama, 0, 150, Short.MAX_VALUE)
-                    .addComponent(penulisanbukulaporan)
-                    .addComponent(keaktifanmahasiswa))
-                .addGap(141, 141, 141))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(keaktifanmahasiswa, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(penulisanbukulaporan, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tgktkeberhasilan, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pilihnama, 0, 87, Short.MAX_VALUE))
+                .addGap(204, 204, 204))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,6 +145,9 @@ public class NilaiUjian extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        tambah.setBackground(new java.awt.Color(0, 204, 204));
+        tambah.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        tambah.setForeground(new java.awt.Color(0, 153, 153));
         tambah.setText("Tambah");
         tambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +155,9 @@ public class NilaiUjian extends javax.swing.JFrame {
             }
         });
 
+        edit.setBackground(new java.awt.Color(0, 204, 204));
+        edit.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        edit.setForeground(new java.awt.Color(0, 153, 153));
         edit.setText("Edit");
         edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +165,9 @@ public class NilaiUjian extends javax.swing.JFrame {
             }
         });
 
+        hapus.setBackground(new java.awt.Color(0, 204, 204));
+        hapus.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        hapus.setForeground(new java.awt.Color(0, 153, 153));
         hapus.setText("Hapus");
         hapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,10 +175,13 @@ public class NilaiUjian extends javax.swing.JFrame {
             }
         });
 
-        reset.setText("Reset");
-        reset.addActionListener(new java.awt.event.ActionListener() {
+        back.setBackground(new java.awt.Color(0, 204, 204));
+        back.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        back.setForeground(new java.awt.Color(0, 153, 153));
+        back.setText("Kembali");
+        back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetActionPerformed(evt);
+                backActionPerformed(evt);
             }
         });
 
@@ -176,24 +192,24 @@ public class NilaiUjian extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(hapus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(edit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tambah, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(reset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(hapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(edit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tambah, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(tambah)
-                .addGap(18, 18, 18)
-                .addComponent(edit)
-                .addGap(18, 18, 18)
-                .addComponent(hapus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(reset)
-                .addContainerGap())
+                .addGap(15, 15, 15)
+                .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hapus, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         tabelmhs.setModel(new javax.swing.table.DefaultTableModel(
@@ -207,7 +223,48 @@ public class NilaiUjian extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabelmhs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelmhsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelmhs);
+
+        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel5.setText("Nilai Ujian");
+
+        id.setText("0");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel5)
+                .addGap(105, 105, 105)
+                .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(id))
+                .addGap(32, 32, 32))
+        );
+
+        reset.setText("Reset");
+        reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,20 +272,26 @@ public class NilaiUjian extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(112, 112, 112))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(reset)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -306,6 +369,56 @@ public class NilaiUjian extends javax.swing.JFrame {
         keaktifanmahasiswa.setText("");
     }//GEN-LAST:event_resetActionPerformed
 
+    private void tabelmhsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelmhsMouseClicked
+       int tabel = tabelmhs.getSelectedRow();
+       
+       String a = tabelmhs.getValueAt(tabel, 0).toString();
+        id.setText(a);
+        
+        String b = tabelmhs.getValueAt(tabel, 2).toString();
+        tgktkeberhasilan.setText(b);
+        
+         String c = tabelmhs.getValueAt(tabel, 3).toString();
+        penulisanbukulaporan.setText(c);
+        
+        String d = tabelmhs.getValueAt(tabel, 4).toString();
+        keaktifanmahasiswa.setText(d);
+    }//GEN-LAST:event_tabelmhsMouseClicked
+
+    private void tgktkeberhasilanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tgktkeberhasilanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tgktkeberhasilanActionPerformed
+
+    private void tgktkeberhasilanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tgktkeberhasilanKeyTyped
+       char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_tgktkeberhasilanKeyTyped
+
+    private void penulisanbukulaporanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_penulisanbukulaporanKeyTyped
+        char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_penulisanbukulaporanKeyTyped
+
+    private void keaktifanmahasiswaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keaktifanmahasiswaKeyTyped
+       char kar = evt.getKeyChar();
+        if (!(Character.isDigit(kar))) {
+            JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
+            evt.consume();
+        }
+    }//GEN-LAST:event_keaktifanmahasiswaKeyTyped
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        DashboardDosen dosen = new DashboardDosen();
+        dosen.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -342,6 +455,7 @@ public class NilaiUjian extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JButton edit;
     private javax.swing.JButton hapus;
     private javax.swing.JLabel id;
@@ -349,9 +463,10 @@ public class NilaiUjian extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField keaktifanmahasiswa;
     private javax.swing.JTextField penulisanbukulaporan;

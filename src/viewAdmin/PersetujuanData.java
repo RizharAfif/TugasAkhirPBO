@@ -306,7 +306,6 @@ public class PersetujuanData extends javax.swing.JFrame {
     }//GEN-LAST:event_kirimActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-
         DashboardAdmin form = new DashboardAdmin();
         form.setVisible(true);
         this.dispose();
