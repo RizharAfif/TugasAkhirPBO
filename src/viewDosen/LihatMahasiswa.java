@@ -9,7 +9,6 @@ package viewDosen;
  *
  * @author Elsa Sonia
  */
-
 import connectionConfig.Koneksi;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,8 +17,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-
 
 public class LihatMahasiswa extends javax.swing.JFrame {
 
@@ -37,8 +34,9 @@ public class LihatMahasiswa extends javax.swing.JFrame {
         model.addColumn("Alamat");
         model.addColumn("Tempat");
         model.addColumn("Waktu Pelaksanaan");
+        model.addColumn("Hasil Akhir");
         loadTable();
-
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -71,7 +69,7 @@ public class LihatMahasiswa extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(662, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,18 +111,17 @@ public class LihatMahasiswa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Kembali, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5))
         );
 
         pack();
@@ -132,8 +129,8 @@ public class LihatMahasiswa extends javax.swing.JFrame {
 
     private void KembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KembaliActionPerformed
         DashboardDosen form = new DashboardDosen();
-       form.setVisible(true);
-       this.dispose();
+        form.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_KembaliActionPerformed
 
@@ -182,12 +179,13 @@ public class LihatMahasiswa extends javax.swing.JFrame {
 
     private void loadTable() {
         try {
-            String sql = "SELECT * FROM tb_mahasiswa";
+            String sql = "SELECT id_mahasiswa, tb_mahasiswa.nama, nim, alamat, tempat, waktu, judulPkn, hasilAkhir "
+                    + "FROM tb_mahasiswa INNER JOIN hasil_akhir ON tb_mahasiswa.nama = hasil_akhir.nama;";
             Statement n = con.createStatement();
             ResultSet rs = n.executeQuery(sql);
 
             while (rs.next()) {
-                Object[] o = new Object[7];
+                Object[] o = new Object[8];
                 o[0] = rs.getString("id_mahasiswa");
                 o[1] = rs.getString("nama");
                 o[2] = rs.getString("nim");
@@ -195,6 +193,7 @@ public class LihatMahasiswa extends javax.swing.JFrame {
                 o[4] = rs.getString("tempat");
                 o[5] = rs.getString("waktu");
                 o[6] = rs.getString("judulPkn");
+                o[7] = rs.getString("hasilAkhir");
                 model.addRow(o);
             }
         } catch (SQLException e) {

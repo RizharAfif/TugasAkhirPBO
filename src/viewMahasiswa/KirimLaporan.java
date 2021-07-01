@@ -30,6 +30,7 @@ public class KirimLaporan extends javax.swing.JFrame {
      */
     public KirimLaporan() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

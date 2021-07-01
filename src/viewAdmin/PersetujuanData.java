@@ -35,6 +35,7 @@ public class PersetujuanData extends javax.swing.JFrame {
         name.setEditable(false);
         place.setEditable(false);
         date.setEnabled(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**

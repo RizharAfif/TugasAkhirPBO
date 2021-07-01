@@ -19,6 +19,7 @@ public class DashboardMahasiswa extends javax.swing.JFrame {
      */
     public DashboardMahasiswa() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -136,9 +137,9 @@ public class DashboardMahasiswa extends javax.swing.JFrame {
     }//GEN-LAST:event_daftarActionPerformed
 
     private void prop1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prop1ActionPerformed
-       pengajuanProporsal proporsal = new pengajuanProporsal();
-       proporsal.setVisible(true);
-       this.dispose();
+        pengajuanProporsal proporsal = new pengajuanProporsal();
+        proporsal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_prop1ActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed

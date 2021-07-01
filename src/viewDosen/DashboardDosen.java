@@ -19,6 +19,7 @@ public class DashboardDosen extends javax.swing.JFrame {
      */
     public DashboardDosen() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -130,17 +131,19 @@ public class DashboardDosen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jadwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jadwalActionPerformed
-        NilaiUjian nilai = new NilaiUjian();
-        nilai.setVisible(true);
+        LihatMahasiswa mhs = new LihatMahasiswa();
+        mhs.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jadwalActionPerformed
 
     private void nilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiActionPerformed
-        // TODO add your handling code here:
+        NilaiUjian nilai = new NilaiUjian();
+        nilai.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_nilaiActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-       LoginForm form = new LoginForm();
+        LoginForm form = new LoginForm();
         int login;
         login = JOptionPane.showConfirmDialog(this, "Yakin mau kelular?", "Information", JOptionPane.YES_NO_OPTION);
         if (login == JOptionPane.YES_OPTION) {

@@ -29,6 +29,7 @@ public class KirimEmailNilai extends javax.swing.JFrame {
      */
     public KirimEmailNilai() {
         initComponents();
+         this.setLocationRelativeTo(null);
     }
 
     /**

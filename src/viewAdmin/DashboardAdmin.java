@@ -19,6 +19,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
      */
     public DashboardAdmin() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -109,18 +110,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pkn, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(apprv, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(ujian, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(apprv, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                .addGap(68, 68, 68)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ujian, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pkn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(45, 45, 45)
-                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(288, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,36 +128,35 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addComponent(apprv, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ujian, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
-                .addComponent(pkn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pkn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 64, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(238, Short.MAX_VALUE)
-                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(63, 63, 63)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void apprvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apprvActionPerformed
-          PersetujuanData data = new PersetujuanData();
-          data.setVisible(true);
-          this.dispose();
+        PersetujuanData data = new PersetujuanData();
+        data.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_apprvActionPerformed
 
     private void pknActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pknActionPerformed
-       TambahNilaiForm form = new TambahNilaiForm();
-       form.setVisible(true);
-       this.dispose();
+        NilaiPkn pkn = new NilaiPkn();
+        pkn.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_pknActionPerformed
 
     private void ujianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ujianActionPerformed
-        // TODO add your handling code here:
+        TambahNilaiForm form = new TambahNilaiForm();
+        form.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_ujianActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-       LoginForm form = new LoginForm();
+        LoginForm form = new LoginForm();
         int login;
         login = JOptionPane.showConfirmDialog(this, "Yakin mau kelular?", "Information", JOptionPane.YES_NO_OPTION);
         if (login == JOptionPane.YES_OPTION) {

@@ -29,11 +29,12 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author LEGION
  */
 public class TambahNilaiForm extends javax.swing.JFrame {
+
     DefaultTableModel tabel = new DefaultTableModel();
     Koneksi kon = new Koneksi();
     Connection a = kon.configDB();
 
-    public TambahNilaiForm(){
+    public TambahNilaiForm() {
         initComponents();
         tableView.setModel(tabel);
         tabel.addColumn("id");
@@ -49,6 +50,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
         tabel.addColumn("Berbicara");
         tabel.addColumn("Bergaul");
         label.setVisible(true);
+        this.setLocationRelativeTo(null);
         loadCombo();
         loadTable();
     }
@@ -416,16 +418,16 @@ public class TambahNilaiForm extends javax.swing.JFrame {
             int Ttrampil = Integer.parseInt(trampil.getText());
             int Tbicara = Integer.parseInt(bicara.getText());
             int Tgaul = Integer.parseInt(gaul.getText());
-            int total = Tsopan + Tdishadir + Tdispeker + TkePrak + Tjawab + Tmau + TilPrak + Ttrampil + 
-                    Tbicara + Tgaul;
-            int hasil = total /10;
+            int total = Tsopan + Tdishadir + Tdispeker + TkePrak + Tjawab + Tmau + TilPrak + Ttrampil
+                    + Tbicara + Tgaul;
+            int hasil = total / 10;
             String sql = "insert into nilai_pkn (nama, sopan, disHadir, disPeker, kePrak, tngjwb, mau, ilPrak, trampil, bicara, gaul, total)"
-                    + "VALUES ('"+listNama.getSelectedItem()+"','" + Tsopan + "', '" + Tdishadir + "', '" + Tdispeker + "', '" + TkePrak + "', '" + Tjawab + "',"
-                    + "'" + Tmau + "','" + TilPrak + "', '" + Ttrampil + "', '" + Tbicara + "', '" + Tgaul + "', '"+hasil+"')";
+                    + "VALUES ('" + listNama.getSelectedItem() + "','" + Tsopan + "', '" + Tdishadir + "', '" + Tdispeker + "', '" + TkePrak + "', '" + Tjawab + "',"
+                    + "'" + Tmau + "','" + TilPrak + "', '" + Ttrampil + "', '" + Tbicara + "', '" + Tgaul + "', '" + hasil + "')";
             PreparedStatement ps = a.prepareStatement(sql);
             ps.execute();
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-             ps.close();
+            ps.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Data gagal" + e);
         }
@@ -435,9 +437,9 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_tbhBtnActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-    DashboardAdmin form = new DashboardAdmin();
-    form.setVisible(true);
-    this.dispose();
+        DashboardAdmin form = new DashboardAdmin();
+        form.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_backActionPerformed
 
     private void tableViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableViewMouseClicked
@@ -447,7 +449,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_tableViewMouseClicked
 
     private void hapusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusBtnActionPerformed
-      if (tableView.isRowSelected(tableView.getSelectedRow())) {
+        if (tableView.isRowSelected(tableView.getSelectedRow())) {
             try {
                 String nur = id.getText();
                 String sotres = "delete from nilai_pkn where id ='" + nur + "'";
@@ -459,7 +461,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(this, "This message is error" + e.getMessage());
             }
-                loadTable();
+            loadTable();
         } else {
             JOptionPane.showMessageDialog(this, "What You Will Be Deleted?");
         }
@@ -470,10 +472,10 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_sopanActionPerformed
 
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
-       try {
-        String file = "src/reportForm/report1.jasper";
+        try {
+            String file = "src/reportForm/report1.jasper";
             HashMap h = new HashMap();
-            
+
             h.put("id", Integer.valueOf(id.getText()));
 
             JasperPrint print = JasperFillManager.fillReport(file, h);
@@ -500,7 +502,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_disHadirKeyTyped
 
     private void disPekerKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_disPekerKeyTyped
-       char kar = evt.getKeyChar();
+        char kar = evt.getKeyChar();
         if (!(Character.isDigit(kar))) {
             JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
             evt.consume();
@@ -508,7 +510,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_disPekerKeyTyped
 
     private void kePrakKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kePrakKeyTyped
-       char kar = evt.getKeyChar();
+        char kar = evt.getKeyChar();
         if (!(Character.isDigit(kar))) {
             JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
             evt.consume();
@@ -524,7 +526,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_tngjwbKeyTyped
 
     private void mauKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mauKeyTyped
-       char kar = evt.getKeyChar();
+        char kar = evt.getKeyChar();
         if (!(Character.isDigit(kar))) {
             JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
             evt.consume();
@@ -548,7 +550,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_trampilKeyTyped
 
     private void bicaraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bicaraKeyTyped
-       char kar = evt.getKeyChar();
+        char kar = evt.getKeyChar();
         if (!(Character.isDigit(kar))) {
             JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
             evt.consume();
@@ -556,7 +558,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     }//GEN-LAST:event_bicaraKeyTyped
 
     private void gaulKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gaulKeyTyped
-      char kar = evt.getKeyChar();
+        char kar = evt.getKeyChar();
         if (!(Character.isDigit(kar))) {
             JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
             evt.consume();
@@ -632,7 +634,7 @@ public class TambahNilaiForm extends javax.swing.JFrame {
     public javax.swing.JTextField tngjwb;
     public javax.swing.JTextField trampil;
     // End of variables declaration//GEN-END:variables
-public void loadTable(){
+public void loadTable() {
         tabel.getDataVector().removeAllElements();
         tabel.fireTableDataChanged();
         try {
@@ -652,41 +654,41 @@ public void loadTable(){
                 o[8] = rs.getString("ilPrak");
                 o[9] = rs.getString("trampil");
                 o[10] = rs.getString("bicara");
-                o[11] = rs.getString("gaul");    
+                o[11] = rs.getString("gaul");
                 tabel.addRow(o);
             }
         } catch (SQLException e) {
 
         }
-}
-
-public void clear(){
-    listNama.setSelectedItem("--Pilih Nama--");
-    sopan.setText("");
-    disHadir.setText("");
-    disPeker.setText("");
-    kePrak.setText("");
-    tngjwb.setText("");
-    trampil.setText("");
-    mau.setText("");
-    ilPrak.setText("");
-    bicara.setText("");
-    gaul.setText("");
-}
-
-public void loadCombo(){
-    try {
-        String sql = "select nama from tb_mahasiswa where status = 'Diterima'";
-        Statement s = a.createStatement();
-        ResultSet rs = s.executeQuery(sql);
-        
-        while(rs.next()){
-             Object[] o = new Object[3];
-             o[0] = rs.getString("nama");
-             listNama.addItem((String) o[0]);
-        }
-        rs.close();
-    } catch (Exception e) {
     }
-}
+
+    public void clear() {
+        listNama.setSelectedItem("--Pilih Nama--");
+        sopan.setText("");
+        disHadir.setText("");
+        disPeker.setText("");
+        kePrak.setText("");
+        tngjwb.setText("");
+        trampil.setText("");
+        mau.setText("");
+        ilPrak.setText("");
+        bicara.setText("");
+        gaul.setText("");
+    }
+
+    public void loadCombo() {
+        try {
+            String sql = "select nama from tb_mahasiswa where status = 'Diterima'";
+            Statement s = a.createStatement();
+            ResultSet rs = s.executeQuery(sql);
+
+            while (rs.next()) {
+                Object[] o = new Object[3];
+                o[0] = rs.getString("nama");
+                listNama.addItem((String) o[0]);
+            }
+            rs.close();
+        } catch (Exception e) {
+        }
+    }
 }

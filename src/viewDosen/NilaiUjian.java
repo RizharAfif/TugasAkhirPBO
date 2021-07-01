@@ -19,11 +19,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Ferdy Yoga
  */
 public class NilaiUjian extends javax.swing.JFrame {
+
     DefaultTableModel model = new DefaultTableModel();
     Koneksi kon = new Koneksi();
     Connection con = (Connection) kon.configDB();
 
-    
     public NilaiUjian() {
         initComponents();
         tabelmhs.setModel(model);
@@ -32,11 +32,12 @@ public class NilaiUjian extends javax.swing.JFrame {
         model.addColumn("Tingkat keberhasilan");
         model.addColumn("Penulisan buku laporan");
         model.addColumn("Keaktifan mahasiswa");
-        
+        model.addColumn("Total");
         loadTable();
         comboList();
         id.setVisible(false);
-
+        reset.setVisible(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -59,7 +60,6 @@ public class NilaiUjian extends javax.swing.JFrame {
         keaktifanmahasiswa = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         tambah = new javax.swing.JButton();
-        edit = new javax.swing.JButton();
         hapus = new javax.swing.JButton();
         back = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -155,16 +155,6 @@ public class NilaiUjian extends javax.swing.JFrame {
             }
         });
 
-        edit.setBackground(new java.awt.Color(0, 204, 204));
-        edit.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        edit.setForeground(new java.awt.Color(0, 153, 153));
-        edit.setText("Edit");
-        edit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editActionPerformed(evt);
-            }
-        });
-
         hapus.setBackground(new java.awt.Color(0, 204, 204));
         hapus.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         hapus.setForeground(new java.awt.Color(0, 153, 153));
@@ -193,10 +183,8 @@ public class NilaiUjian extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(hapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(edit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tambah, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)))
+                    .addComponent(hapus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tambah, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -204,12 +192,11 @@ public class NilaiUjian extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(tambah, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(edit, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(hapus, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
 
         tabelmhs.setModel(new javax.swing.table.DefaultTableModel(
@@ -308,14 +295,16 @@ public class NilaiUjian extends javax.swing.JFrame {
             int keberhasilan = Integer.parseInt(tgktkeberhasilan.getText());
             int laporan = Integer.parseInt(penulisanbukulaporan.getText());
             int keaktifan = Integer.parseInt(keaktifanmahasiswa.getText());
+            int total = keberhasilan + laporan + keaktifan;
+            int hasil = total / 3;
 
-            String sql = "insert into nilai_ujian (nama,keberhasilan, penulisan, keaktifan)"
-                    + "VALUES ('"+pilihnama.getSelectedItem()+"','" + keberhasilan + "', '" + laporan + "', '" + keaktifan + "')";
+            String sql = "insert into nilai_ujian (nama,keberhasilan, penulisan, keaktifan, totalNilai)"
+                    + "VALUES ('" + pilihnama.getSelectedItem() + "','" + keberhasilan + "', '" + laporan + "', '" + keaktifan + "', '" + hasil + "')";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.execute();
             JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-             ps.close();
-             reset.doClick();
+            ps.close();
+            reset.doClick();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Data gagal" + e);
         }
@@ -323,38 +312,16 @@ public class NilaiUjian extends javax.swing.JFrame {
         comboList();
     }//GEN-LAST:event_tambahActionPerformed
 
-    private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
-        try {
-            int keberhasilan = Integer.parseInt(tgktkeberhasilan.getText());
-            int laporan = Integer.parseInt(penulisanbukulaporan.getText());
-            int keaktifan = Integer.parseInt(keaktifanmahasiswa.getText());
-            
-
-            String sql = "update nilai_ujian set keberhasilan = '"+keberhasilan +"', penulisan = '"+laporan + "', keaktifan = '"+ keaktifan +"'"
-                    + "where id_ujian = '"+id.getText()+"'";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.executeUpdate();
-            
-            JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
-             ps.close();
-             reset.doClick();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Data gagal" + e);
-        }
-        loadTable();
-        comboList();
-    }//GEN-LAST:event_editActionPerformed
-
     private void hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusActionPerformed
         String mahasiswa = id.getText();
-        if(tabelmhs.isRowSelected(tabelmhs.getSelectedRow())){
+        if (tabelmhs.isRowSelected(tabelmhs.getSelectedRow())) {
             try {
-                String sql = "delete from nilai_ujian where id_ujian = '"+mahasiswa+"'";
+                String sql = "delete from nilai_ujian where id_ujian = '" + mahasiswa + "'";
                 PreparedStatement ps = con.prepareCall(sql);
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Data Succesfully Deleted");
                 ps.close();
-                reset.doClick(); 
+                reset.doClick();
             } catch (Exception e) {
             }
         }
@@ -370,17 +337,17 @@ public class NilaiUjian extends javax.swing.JFrame {
     }//GEN-LAST:event_resetActionPerformed
 
     private void tabelmhsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelmhsMouseClicked
-       int tabel = tabelmhs.getSelectedRow();
-       
-       String a = tabelmhs.getValueAt(tabel, 0).toString();
+        int tabel = tabelmhs.getSelectedRow();
+
+        String a = tabelmhs.getValueAt(tabel, 0).toString();
         id.setText(a);
-        
+
         String b = tabelmhs.getValueAt(tabel, 2).toString();
         tgktkeberhasilan.setText(b);
-        
-         String c = tabelmhs.getValueAt(tabel, 3).toString();
+
+        String c = tabelmhs.getValueAt(tabel, 3).toString();
         penulisanbukulaporan.setText(c);
-        
+
         String d = tabelmhs.getValueAt(tabel, 4).toString();
         keaktifanmahasiswa.setText(d);
     }//GEN-LAST:event_tabelmhsMouseClicked
@@ -390,7 +357,7 @@ public class NilaiUjian extends javax.swing.JFrame {
     }//GEN-LAST:event_tgktkeberhasilanActionPerformed
 
     private void tgktkeberhasilanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tgktkeberhasilanKeyTyped
-       char kar = evt.getKeyChar();
+        char kar = evt.getKeyChar();
         if (!(Character.isDigit(kar))) {
             JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
             evt.consume();
@@ -406,7 +373,7 @@ public class NilaiUjian extends javax.swing.JFrame {
     }//GEN-LAST:event_penulisanbukulaporanKeyTyped
 
     private void keaktifanmahasiswaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keaktifanmahasiswaKeyTyped
-       char kar = evt.getKeyChar();
+        char kar = evt.getKeyChar();
         if (!(Character.isDigit(kar))) {
             JOptionPane.showMessageDialog(null, "Hanya bisa menggunakan angka");
             evt.consume();
@@ -456,7 +423,6 @@ public class NilaiUjian extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private javax.swing.JButton edit;
     private javax.swing.JButton hapus;
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
@@ -492,6 +458,7 @@ public class NilaiUjian extends javax.swing.JFrame {
                 o[2] = rs.getString("keberhasilan");
                 o[3] = rs.getString("penulisan");
                 o[4] = rs.getString("keaktifan");
+                o[5] = rs.getString("totalNilai");
                 model.addRow(o);
             }
         } catch (SQLException e) {
@@ -499,20 +466,21 @@ public class NilaiUjian extends javax.swing.JFrame {
         }
 
     }
-    public void comboList(){
+
+    public void comboList() {
         try {
-        String sql = "select nama from tb_mahasiswa where status = 'Diterima'";
-        Statement s = con.createStatement();
-        ResultSet rs = s.executeQuery(sql);
-        
-        while(rs.next()){
-             Object[] o = new Object[3];
-             o[0] = rs.getString("nama");
-             pilihnama.addItem((String) o[0]);
+            String sql = "select nama from tb_mahasiswa where status = 'Diterima'";
+            Statement s = con.createStatement();
+            ResultSet rs = s.executeQuery(sql);
+
+            while (rs.next()) {
+                Object[] o = new Object[3];
+                o[0] = rs.getString("nama");
+                pilihnama.addItem((String) o[0]);
+            }
+            rs.close();
+        } catch (Exception e) {
         }
-        rs.close();
-    } catch (Exception e) {
-    }
 
     }
 }

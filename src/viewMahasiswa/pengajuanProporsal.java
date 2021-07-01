@@ -37,6 +37,8 @@ public class pengajuanProporsal extends javax.swing.JFrame {
         model.addColumn("Waktu Pelaksanaan");
         loadTable();
         id.setVisible(false);
+        clear.setVisible(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -28,6 +28,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     public LoginForm() {
         initComponents();
+         this.setLocationRelativeTo(null);
         admin.setVisible(false);
         dosen.setVisible(false);
         mhs.setVisible(false);

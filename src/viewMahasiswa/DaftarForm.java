@@ -8,12 +8,15 @@ package viewMahasiswa;
 import controllerMahasiswa.ControllerMahasiswa;
 import java.io.File;
 import javax.swing.*;
+
 /**
  *
  * @author LEGION
  */
 public class DaftarForm extends javax.swing.JFrame {
+
     ControllerMahasiswa cbt;
+
     /**
      * Creates new form DaftarForm
      */
@@ -21,6 +24,7 @@ public class DaftarForm extends javax.swing.JFrame {
         initComponents();
         cbt = new ControllerMahasiswa(this);
         cbt.isiTabel();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -301,7 +305,7 @@ public class DaftarForm extends javax.swing.JFrame {
     }//GEN-LAST:event_tabelDataMouseClicked
 
     private void nilaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nilaiActionPerformed
-        
+
     }//GEN-LAST:event_nilaiActionPerformed
 
     private void nilaiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nilaiKeyTyped
@@ -312,7 +316,7 @@ public class DaftarForm extends javax.swing.JFrame {
     }//GEN-LAST:event_nilaiKeyTyped
 
     private void cariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cariActionPerformed
-   cbt.cariFile();
+        cbt.cariFile();
     }//GEN-LAST:event_cariActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -404,16 +408,16 @@ public class DaftarForm extends javax.swing.JFrame {
     public JTextField getTxtID() {
         return txtID;
     }
-    
+
     public JButton getSimpanButton() {
         return simpanBtn;
     }
-    
-     public JButton getClearButton() {
+
+    public JButton getClearButton() {
         return clearBtn;
     }
-     
-     public JButton getCariButton(){
-         return cari;
-     }
+
+    public JButton getCariButton() {
+        return cari;
+    }
 }
