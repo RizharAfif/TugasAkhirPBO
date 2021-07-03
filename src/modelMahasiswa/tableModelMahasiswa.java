@@ -19,6 +19,7 @@ public class tableModelMahasiswa extends AbstractTableModel{
         this.lb = lb;
     }
     
+    @Override
     public int getRowCount() {
          return lb.size();
     }

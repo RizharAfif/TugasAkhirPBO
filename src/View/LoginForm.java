@@ -17,6 +17,9 @@ import viewMahasiswa.DashboardMahasiswa;
 /**
  *
  * @author LEGION
+ * LOGIN ADMIN : username = admin password = 123
+ * LOGIN DOSEN : username = dosen password = 123
+ * LOGIN Mahasiswa : username = mahasiswa password = 123
  */
 public class LoginForm extends javax.swing.JFrame {
 
